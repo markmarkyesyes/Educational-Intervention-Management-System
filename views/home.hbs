@@ -1,0 +1,65 @@
+<div class="row">
+  <h1 class="text-center">Tier Two Worksheet</h1>
+  <hr />
+  <div class="form-group">
+    <div class="col-md-6">
+      <form action="/submitWorksheet" method="POST">
+        <label for="problemId">Problem Identification</label>
+          <textarea name="problemId" class="form-control"  id="problemId" cols="90" rows="7" class="form-control" style="resize:none"></textarea><br />
+        <label for="problemAnalysis">Problem Analysis</label>
+          <textarea name="problemAnalysis" class="form-control" id="problemAnalysis" cols="30" rows="7" class="form-control" style="resize:none"></textarea><br />
+        <label for="goal">Intervention Goal</label>
+          <textarea name="goal" class="form-control" id="goal" cols="30" rows="7" class="form-control" style="resize:none"></textarea><br />
+        <label for="descriptionTierOne">Description Tier One Intervention</label>
+          <textarea name="descriptionTierOne" class="form-control" id="descriptionTierOne" cols="30" rows="7" class="form-control" style="resize:none"> </textarea><br />
+        <label for="descriptionTierTwo">Description Tier Two Intervention</label>
+          <textarea name="descriptionTierTwo" class="form-control" id="descriptionTierTwo" cols="30" rows="7" class="form-control" style="resize:none"> </textarea><br />
+    </div>
+    <div class="col-sm-4">
+      <!-- add validations for earliest, latest -->
+        <label for="startDate">Start Date</label>
+          <input type="date" class="form-control" id="startDate" name="startDate"> </input><br />
+        <label for="endDate">End Date</label>
+          <input type="date" class="form-control" id="endDate" name="endDate"> </input><br />
+        <label for="completedDate">Completed Date</label>
+          <input type="date" class="form-control" id="completedDate" name="completedDate"> </input><br />
+        <hr />
+        <label for="minutesPerSession">Minutes Per Session</label>
+          <input type="number" class="form-control" id="minutesPerSession" name="minutesPerSession" /><br />
+        <label for="sessionsPerWeek">Sessions Per Week</label>
+          <input type="number" class="form-control" id="sessionsPerWeek" name="sessionsPerWeek" /><br />
+        <hr />
+        <!-- for interventionist id/pmId, find out if multiple are needed -->
+        <label for="interventionistId">Select Interventionist</label><br />
+          <select class="form-control" id="interventionistId">
+            <option>Me</option>
+            <option>You</option>
+            <option>Bob</option>
+            <option>My Cat</option>
+          </select>
+        <label for="pmFacultyId">Select Progress Monitor (Faculty)</label><br />
+          <select class="form-control" id="pmFacultyId">
+            <option>Me</option>
+            <option>You</option>
+            <option>Bob</option>
+            <option>My Cat</option>
+          </select>
+        <hr />
+        <label for="pmTools">Select Progress Monitoring Tools</label><br />
+          <select class="form-control" id="pmTools">
+            <option>Me</option>
+            <option>You</option>
+            <option>Bob</option>
+            <option>My Cat</option>
+          </select>
+        <label for="pmFrequency">Select Frequency of Progress Monitoring</label><br />
+          <select class="form-control" id="pmFrequency">
+            <option>Me</option>
+            <option>You</option>
+            <option>Bob</option>
+            <option>My Cat</option>
+          </select>
+    </div>
+      </form>
+  </div>
+</div>

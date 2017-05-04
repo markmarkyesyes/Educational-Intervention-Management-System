@@ -1,0 +1,21 @@
+{
+  "name": "psd150-intervention-backend",
+  "version": "1.0.0",
+  "description": "A backend (with temporary frontend) that stores and serves intervention data for students to authorized users.",
+  "main": "app.js",
+  "repository": "https://github.com/markmarkyesyes/psd150-intervention-system",
+  "author": "Mark Hahn",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.2",
+    "flash": "^1.1.0",
+    "mongoose": "^4.9.6",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  }
+}
