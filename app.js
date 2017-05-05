@@ -2,6 +2,19 @@ const app = require("express")();
 require("dotenv").config();
 
 ////
+//Session
+////
+const expressSession = require("express-session");
+app.use(
+  expressSession({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: false}
+  })
+);
+
+////
 //Body Parser
 ////
 const bodyParser = require("body-parser");

@@ -12,7 +12,7 @@ Add mongoose
     //-for Faculty
 
 Add PassportJs
-  -implement login page
+  //-implement login page
   -add passport-local strategy
     -add sessions
     -make sure password is stored with argon2
