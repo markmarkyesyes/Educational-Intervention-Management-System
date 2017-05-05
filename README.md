@@ -40,7 +40,7 @@ Every user shares the same password "Foo" (case sensitive of course)
 
 To start the application, assuming you have seeded and installed dependencies, navigate to the
 applications root directory and run:
-  $ nodemon
+  $ nodemon (or if not installed globally, run $ node app.js)
 
 This will allow you to access the app in your web browser at:
   'http://localhost:3000'
@@ -83,7 +83,7 @@ so they deserve a good hard thinking about how that whole system can be more ext
 Finally, from the home page on, all navigation is done through post routers, which was just a hacky way to send some hidden field
 data. Putting more thought into how that data could be transmitted server side is something I will certainly be looking at.
 
-Total time coding was ~19 hours
+Total time coding was ~20 hours
 
 There is a file in the root called toImplement.md that I used as a checklist and scratchpad through the
 process if that is of any interest.
