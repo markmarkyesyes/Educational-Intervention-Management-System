@@ -88,7 +88,6 @@ Faculty.remove({}, function(err) {
           }
         ]
       });
-
       students.push(student);
     }
     var studentPromises = [];
@@ -102,20 +101,3 @@ Faculty.remove({}, function(err) {
     console.log(students[0]);
     console.log("finsihed seeding");
   });
-
-// .then(resStudent => {
-//   console.log("created Student", resStudent);
-//   let facultyId = resStudent.hrTeacher;
-//   return Faculty.update(
-//     {_id: facultyId},
-//     {
-//       $push: {pmStudents: resStudent}
-//     }
-//   );
-// })
-// .then(resTeacher => {
-//   console.log("created teacher", resTeacher);
-// })
-// .catch(err => {
-//   console.log("failed!", err);
-// });
