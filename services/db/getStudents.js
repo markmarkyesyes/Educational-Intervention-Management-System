@@ -24,16 +24,3 @@ let populateDashboard = id => {
   });
 };
 module.exports = {populateDashboard};
-
-// -list students in database (name, grade, hrteacher, forms )
-//   -only list students with forms
-// -allow teacher to view or print any worksheet from the student
-// -implement a new worksheet flow at the top of the page
-//   -one row,
-//     1. autofill student names from db
-//     2. select subject
-//     3. select intervention tier
-//       -throw error if student has the same tier&&subject || !tier < selectedTier&&subject
-//     4. click to enter the form
-//       -will load students name, and predetermined info into hidden fields
-//       -will serve the proper form with the conditional objects determined by subject

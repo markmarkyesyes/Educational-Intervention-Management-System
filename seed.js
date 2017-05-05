@@ -17,6 +17,7 @@ Faculty.remove({}, function(err) {
         console.error(err);
       } else {
         console.log("collection removed");
+
         console.log("creating Faculty");
         for (let i = 0; i < 50; i++) {
           var member = new Faculty({

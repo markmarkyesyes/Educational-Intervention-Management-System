@@ -35,12 +35,5 @@ let onLogout = (req, res) => {
 router.get("/", onIndex);
 router.get("/login", onLoggedInVisit);
 router.get("/logout", onLogout);
-// router.post(
-//   "/login",
-//   passport.authenticate("local", {failureRedirect: "/login"}),
-//   function(req, res) {
-//     res.redirect("/");
-//   }
-// );
 
 module.exports = router;
