@@ -21,6 +21,7 @@ this application will be used for)
 cd into the project folder, and run:
   $ npm install  OR  $ yarn install
 
+(If you are running a Mac OS, please start your MongoDB before seeding)
 Following successful installation of packages, in the applications root directory, run the command:
   $ node seed.js
 
