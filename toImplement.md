@@ -57,3 +57,8 @@ Add DocX Templater
 
 Login features
   -not a user? send email to admin to notify
+
+Implement flash messages
+  -login
+  -form creation
+  -attempting to create invalid form

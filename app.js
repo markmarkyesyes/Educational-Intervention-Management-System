@@ -18,12 +18,15 @@ app.use(
 //Body Parser
 ////
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 ////
 //Mongoose
 ////
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const models = require("./models");
+const Faculty = models.Faculty;
+// mongoose.connect("mongodb://localhost/psd150-interventions-development");
 app.use((req, res, next) => {
   if (mongoose.connection.readyState) {
     console.log("connected to MongoDB");
@@ -34,6 +37,28 @@ app.use((req, res, next) => {
       next();
     });
   }
+});
+
+////
+//Passport
+////
+const passport = require("passport");
+app.use(passport.initialize());
+app.use(passport.session());
+
+////
+//Passport Sessions
+////
+passport.serializeUser(function(user, done) {
+  console.log("passport-local: serializing");
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(_id, done) {
+  console.log("passport-local: de-serializing");
+  Faculty.findById(_id, function(err, user) {
+    done(err, user);
+  });
 });
 
 ////
