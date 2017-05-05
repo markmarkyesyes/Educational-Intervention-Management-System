@@ -24,11 +24,11 @@ let StudentSchema = new Schema({
       pmTools: [{type: String}],
       pmFrequency: {type: String},
       pmFacultyId: [{type: Schema.ObjectId, ref: "Faculty"}],
-      improvement: {type: String},
       notes: {type: String},
       data: {
         regression: {type: Boolean},
         noChange: {type: Boolean},
+        decreaseDiscrepancy: {type: Boolean},
         discontinueIntervention: {type: Boolean},
         fadeIntervention: {type: Boolean},
         modifyIntervention: {type: Boolean},

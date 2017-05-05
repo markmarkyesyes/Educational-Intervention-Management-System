@@ -35,7 +35,7 @@ Faculty.remove({}, function(err) {
       }
     })
       .then(res => {
-        console.log("created one faculty member", res._id);
+        console.log("created one faculty member", res);
         return Student.create({
           fname: "James",
           lname: "Baxter",
@@ -65,11 +65,11 @@ Faculty.remove({}, function(err) {
               pmTools: ["Hammer", "nails", "Other"],
               pmFrequency: "3-5",
               pmFacultyId: res._id,
-              improvement: "good",
               notes: null,
               data: {
                 regression: true,
                 noChange: true,
+                decreaseDiscrepancy: false,
                 discontinueIntervention: true,
                 fadeIntervention: true,
                 modifyIntervention: true,
@@ -77,9 +77,9 @@ Faculty.remove({}, function(err) {
                 intensityIntervention: true,
                 recycleThroughPSProcess: true,
                 seekEntitlement: true,
-                numStudsinInt: true,
-                numStudsDecreasedDisc: true,
-                effectivenessOfIntervention: true
+                numStudsinInt: 5,
+                numStudsDecreasedDisc: 2,
+                effectivenessOfIntervention: 0
               }
             }
           ]

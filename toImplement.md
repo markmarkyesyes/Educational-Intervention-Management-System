@@ -6,9 +6,9 @@ Add Every feature/commit to Readme.md as a note, refactor later
 Add mongoose
   //-config
   //-Faculty model
-  -Student model
+  //-Student model
     -form validations
-  -create seed and deseed script
+  //-create seed and deseed script
     //-for Faculty
 
 Add PassportJs
@@ -42,6 +42,8 @@ Create Tier Two Worksheet
     -serve student data into hidden fields
     -serve previous problem id as the devault value for the textarea
     -serve previous intervention descriptions as hidden input fields and display lists
+    -make sure progress details(group one) will have select buttons where only one can be selected at a time
+    -second group of progress details can select multiple
   -Review validations
   -Make sure the data is persisted to an object in the students appropriate list using form submission data
   -Return user to dashboard after creation with success flash message
@@ -52,3 +54,6 @@ Create Tier Two Worksheet
 Add DocX Templater
   -add to student display on Dashboard
   -clicking creates the file and sends it to the browser print page
+
+Login features
+  -not a user? send email to admin to notify
