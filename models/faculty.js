@@ -44,13 +44,13 @@ FacultySchema.virtual("password").set(function(value) {
 //   });
 // };
 //
-// FacultySchema.virtual("password").set(async function(value) {
-//   await argon2.hash(value, 8).then(hash => {
-//     value = hash;
+// FacultySchema.virtual("password").set(function(value) {
+//   let that = this;
+//   argon2.hash(value, 8).then(hash => {
+//     this.passwordHash = hash;
+//     console.log(that);
 //     console.log("hash created", hash);
 //   });
-//   this.passwordHash = value;
-//   console.log("new password Hash", this.passwordHash);
 // });
 
 var Faculty = mongoose.model("Faculty", FacultySchema);

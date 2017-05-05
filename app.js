@@ -26,7 +26,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 const mongoose = require("mongoose");
 const models = require("./models");
 const Faculty = models.Faculty;
-// mongoose.connect("mongodb://localhost/psd150-interventions-development");
 app.use((req, res, next) => {
   if (mongoose.connection.readyState) {
     console.log("connected to MongoDB");
@@ -47,16 +46,35 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 ////
+//Local Strategy
+////
+const LocalStrategy = require("passport-local").Strategy;
+passport.use(
+  new LocalStrategy(
+    {passReqToCallback: true},
+    function(req, username, password, done) {
+      Faculty.findOne({email: username}, function(err, user) {
+        if (err) {
+          return done(err);
+        }
+        if (!user || !user.validatePassword(password)) {
+          return done(null, false);
+        }
+        return done(null, user);
+      });
+    }
+  )
+);
+
+////
 //Passport Sessions
 ////
 passport.serializeUser(function(user, done) {
-  console.log("passport-local: serializing");
   done(null, user._id);
 });
 
-passport.deserializeUser(function(_id, done) {
-  console.log("passport-local: de-serializing");
-  Faculty.findById(_id, function(err, user) {
+passport.deserializeUser(function(id, done) {
+  Faculty.findById(id, function(err, user) {
     done(err, user);
   });
 });
@@ -78,6 +96,15 @@ app.set("view engine", "hbs");
 ////
 //Routers
 ////
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureMessage: "Nope!"
+  })
+);
+
 const indexRouter = require("./routers/index");
 app.use("/", indexRouter);
 
