@@ -25,10 +25,8 @@ let tempUser = () => {
 let onIndex = (req, res) => {
   tempUser().then(user => {
     populateDashboard(user._id).then(dashboard => {
-      console.log("hello", JSON.stringify(dashboard, null, 2));
-
+      // console.log("hello", JSON.stringify(dashboard, null, 2));
       if (!req.user) {
-        // console.log(populateDashboard(user._id));
         res.render("home", {dashboard, user});
       } else {
         res.redirect("/login");

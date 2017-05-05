@@ -3,12 +3,14 @@ let router = express.Router();
 const mongoose = require("mongoose");
 const models = require("../models");
 const Faculty = models.Faculty;
+const strategies = require("../helpers/interventionStrategies");
 
 let loadTemplate = (req, res) => {
   let data = {};
   data.student = req.body.studentName;
   data.subject = req.body.subject;
   data.tier = req.body.tier;
+  data.interventionStrategies = strategies[data.subject];
   switch (data.tier) {
     case "One":
       res.render("worksheets/tierOneWorksheet", data);
@@ -18,7 +20,7 @@ let loadTemplate = (req, res) => {
       break;
     case "Three":
       res.render("worksheets/tierThreeWorksheet", data);
-      break;
+      breakt;
     default:
       res.redirect("/");
   }

@@ -24,24 +24,27 @@ Create Dashboard
 -add favicon
   //-list students in database (name, grade, hrteacher, forms )
     //-only list students with forms
-  -allow teacher to view or print any worksheet from the student
-  -implement a new worksheet flow at the top of the page
+  X-allow teacher to view or print any worksheet from the student
+  //-implement a new worksheet flow at the top of the page
     //-one row,
       //1. autofill student names from db
+        -serve student names
+        -seed more students on a loop
+        -run large seed of inital students to benchmark
       //2. select subject
       //3. select intervention tier
         X-throw error if student has the same tier&&subject || !tier < selectedTier&&subject
       //4. click to enter the form
-        -will load students name, and predetermined info into hidden fields
-        -will serve the proper form with the conditional objects determined by subject
+        //-will load students name, and predetermined info into hidden fields
+        //-will serve the proper form with the conditional objects determined by subject
 
 
 Create Tier Two Worksheet
   -Make sure all inputs for the district template are included
     -conditionally populate tier intervention radio options
-    -serve student data into hidden fields
+    //-serve student data into hidden fields
     -serve previous problem id as the devault value for the textarea
-    -serve previous intervention descriptions as hidden input fields and display lists
+    //-serve previous intervention descriptions as hidden input fields and display lists
     -make sure progress details(group one) will have select buttons where only one can be selected at a time
     -second group of progress details can select multiple
   -Review validations
