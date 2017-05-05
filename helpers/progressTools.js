@@ -1,6 +1,6 @@
-let progressDetails = {};
+let progressTools = {};
 
-progressDetails.math = [
+progressTools.math = [
   {id: "progNumSenseScrn", label: "Number Sense Screener"},
   {id: "progFBEarlyMath", label: "FastBridge Early Math"},
   {id: "progDailyCheck", label: "Daily Checks"},
@@ -21,10 +21,10 @@ progressDetails.math = [
   {id: "progUnitTest", label: "Unit-Tests"}
 ];
 
-progressDetails.reading = [
+progressTools.reading = [
   {id: "progEarlyRdng", label: "Early Reading"},
   {id: "progSightWords", label: "Sight Words"},
   {id: "progCBMr", label: "CBMR"}
 ];
 
-module.exports = progressDetails;
+module.exports = progressTools;

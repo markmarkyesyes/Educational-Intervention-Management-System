@@ -1,13 +1,16 @@
 <div class="row">
   <h1 class="text-center">Tier Two Worksheet</h1>
+  <h2 class="text-center">Subject: {{subject}}</h2>
+  <h2 class="text-center">For: {{student}}</h2>
   <hr />
   <div class="form-group">
     <div class="col-md-6">
       <form action="/form/submitWorksheet" method="POST">
         <!-- hidden inputs -->
-        <input type="hidden" value="{{subject}}">
-        <input type="hidden" value="{{studentName}}">
-        <input type="hidden" value="{{tier}}">
+        <input type="hidden" name="subject" value="{{subject}}">
+        <input type="hidden" name="student" value="{{student}}">
+        <input type="hidden" name="tier" value="{{tier}}">
+        <input type="hidden" name="_id" value="{{currUser}}">
         <!-- hidden inputs -->
         <label for="problemId">Problem Identification</label>
           <textarea name="problemId" class="form-control"  id="problemId" cols="90" rows="7" class="form-control" style="resize:none"></textarea><br />
@@ -20,66 +23,57 @@
           <ul>
             <li>Data will be served here</li>
           </ul>
+        <hr />
         <label for="descriptionTierTwo">Description Tier Two Intervention</label><br />
         {{#each interventionStrategies as |strategy| }}
-        <div class="checkbox-inline">
-          <label>
-            <input type="checkbox" name="strategy.field" > {{strategy.label}}
-          </label>
-        </div>
+          <div class="checkbox-inline">
+            <label>
+              <input type="checkbox" name="intStrats[{{strategy.field}}]" >{{strategy.label}}</input>
+            </label>
+          </div>
         {{/each}}
     </div>
     <div class="col-sm-4">
       <!-- add validations for earliest, latest -->
-        <label for="startDate">Start Date</label>
-          <input type="date" class="form-control" id="startDate" name="startDate"> </input><br />
-        <label for="endDate">End Date</label>
-          <input type="date" class="form-control" id="endDate" name="endDate"> </input><br />
-        <label for="completedDate">Completed Date</label>
-          <input type="date" class="form-control" id="completedDate" name="completedDate"> </input><br />
-        <hr />
-        <label for="minutesPerSession">Minutes Per Session</label>
-          <input type="text" class="form-control" id="minutesPerSession" name="minutesPerSession" /><br />
-        <label for="sessionsPerWeek">Sessions Per Week</label>
-          <input type="text" class="form-control" id="sessionsPerWeek" name="sessionsPerWeek" /><br />
-        <hr />
-        <!-- implement as type search -->
-        <label for="interventionistId">Select Interventionist</label><br />
-          <select class="form-control" id="interventionistId">
-            <option>Me</option>
-            <option>You</option>
-            <option>Bob</option>
-            <option>My Cat</option>
-          </select><br />
-        <label for="pmFacultyId">Select Progress Monitor (Faculty)</label><br />
-          <select class="form-control" id="pmFacultyId">
-            <option>Me</option>
-            <option>You</option>
-            <option>Bob</option>
-            <option>My Cat</option>
-          </select>
-        <hr />
-        <label for="pmTools">Select Progress Monitoring Tools</label><br />
-          <select class="form-control" id="pmTools">
-            <option>Me</option>
-            <option>You</option>
-            <option>Bob</option>
-            <option>My Cat</option>
-          </select>
-        <!-- progress monitor tools as radio buttons CONDITIONAL on subject selected  -->
-
-    </div>
-    <div class="col-sm-10">
+      <label for="startDate">Start Date</label>
+        <input type="date" class="form-control" id="startDate" name="startDate"> </input><br />
+      <label for="endDate">End Date</label>
+        <input type="date" class="form-control" id="endDate" name="endDate"> </input><br />
+      <label for="completedDate">Completed Date</label>
+        <input type="date" class="form-control" id="completedDate" name="completedDate"> </input><br />
       <hr />
-      {{#each progressDetails as |detail| }}
+      <label for="minutesPerSession">Minutes Per Session</label>
+        <input type="text" class="form-control" id="minutesPerSession" name="minutesPerSession" /><br />
+      <label for="sessionsPerWeek">Sessions Per Week</label>
+        <input type="text" class="form-control" id="sessionsPerWeek" name="sessionsPerWeek" /><br />
+      <hr />
+      <datalist id="facultyNames">
+        {{#each facultyNames as |faculty|}}
+          <option value="{{faculty}}">
+        {{/each}}
+      </datalist>
+      <label for="interventionistName">Select Interventionist</label><br />
+        <input type="text" list="facultyNames" class="form-control" id="interventionistName" name="interventionistName" />
+      <label for="pmFacultyName">Select Progress Monitor</label><br />
+        <input type="text" list="facultyNames" class="form-control" id="pmFacultyName" name="pmFacultyName" />
+      <br />
+      <label for="pmFrequency">Frequency of Progress Monitoring</label>
+        <input type="text" class="form-control" id="pmFrequency" name="pmFrequency" /><br />
+      <label for="pmTools">Select Progress Monitoring Tools</label><br />
+      {{#each progressTools as |pmTool|}}
       <div class="checkbox-inline">
         <label>
-          <input type="checkbox" name="detail.field" > {{detail.label}}
+          <input type="checkbox" name="pmIngTool[{{pmTool.id}}]" > {{pmTool.label}}</input>
         </label>
       </div>
       {{/each}}
+      <br />
     </div>
-    <!-- <div class="col-sm-10"
+    <div class="col-sm-10">
+      <hr />
+
+    </div>
+    <div class="col-sm-10"
       <ul class="list-inline">
         {{#each decisionPoints as |decisionPoint|}}
         <li>
@@ -92,7 +86,8 @@
         </li>
         {{/each}}
       </ul>
-    </div> -->
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
       </form>
   </div>
 </div>

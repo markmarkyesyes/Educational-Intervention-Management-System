@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const models = require("../../models");
 const Faculty = models.Faculty;
-const getStudentNames = require("../../helpers/getStudentNames");
+const {getStudentNames} = require("../../helpers/getStudentNames");
 
 let getStudentsForFaculty = id => {
   return Faculty.find(id)

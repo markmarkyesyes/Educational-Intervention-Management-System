@@ -61,7 +61,10 @@ create a show page to display the data linked from student on the dashboard
 
 
 --COMPLETES EXPECTED IMPLEMENTATION--
-
+Refactor: getStudentNames method - rename to getNames
+          initial state for form creation
+          combine id/populator helpers
+          reformat id's to match db
 Add DocX Templater
   -add to student display on Dashboard
   -clicking creates the file and sends it to the browser print page

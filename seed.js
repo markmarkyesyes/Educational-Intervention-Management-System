@@ -18,7 +18,7 @@ Faculty.remove({}, function(err) {
       } else {
         console.log("collection removed");
         console.log("creating Faculty");
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 50; i++) {
           var member = new Faculty({
             fname: faker.fake("{{name.firstName}}"),
             lname: faker.fake("{{name.lastName}}"),
@@ -39,13 +39,13 @@ Faculty.remove({}, function(err) {
       }
     })
       .then(res => {
-        console.log("created 20 faculty members", res);
+        console.log("created 50 faculty members", res);
         return Faculty.find({}, {_id: 1});
       })
       .then(faculty => {
         console.log("beginning students seed");
         for (let i = 0; i < 600; i++) {
-          let facultyIndex = Math.floor(Math.random() * (20 - 1)) + 1;
+          let facultyIndex = Math.floor(Math.random() * (50 - 1)) + 1;
           var student = Student({
             fname: faker.fake("{{name.firstName}}"),
             lname: faker.fake("{{name.lastName}}"),
@@ -58,23 +58,29 @@ Faculty.remove({}, function(err) {
                 problemAnalysis: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
                 subject: "Reading",
                 goal: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
-                descriptionTierOne: [
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt"
-                ],
-                descriptionTierTwo: [
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt"
-                ],
+                descriptionTierOne: {
+                  descSightWordsDrast: "on",
+                  descIncWordRehrsl: "on",
+                  descSixMinSol: "on"
+                },
+                descriptionTierTwo: {
+                  descSightWordsDrast: "on",
+                  descIncWordRehrsl: "on",
+                  descSixMinSol: "on"
+                },
                 startDate: Date.now(),
                 endDate: Date.now(),
                 completedDate: Date.now(),
                 sessionsPerWeek: "3-5",
                 minutesPerSession: "15-20",
-                interventionistId: [faculty[facultyIndex - 1]._id],
-                pmTools: ["Hammer", "nails", "Other"],
+                interventionistId: [
+                  `${faculty[facultyIndex - 1].fname} ${faculty[facultyIndex - 1].lname}`
+                ],
+                pmTools: {progEarlyRdng: "on", progSightWords: "on"},
                 pmFrequency: "3-5",
-                pmFacultyId: [faculty[facultyIndex - 1]._id],
+                pmFacultyId: [
+                  `${faculty[facultyIndex - 1].fname} ${faculty[facultyIndex - 1].lname}`
+                ],
                 notes: null,
                 regression: true,
                 noChange: true,
