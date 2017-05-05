@@ -25,51 +25,19 @@ let StudentSchema = new Schema({
       pmFrequency: {type: String},
       pmFacultyId: [{type: Schema.ObjectId, ref: "Faculty"}],
       notes: {type: String},
-      data: {
-        regression: {type: Boolean},
-        noChange: {type: Boolean},
-        decreaseDiscrepancy: {type: Boolean},
-        discontinueIntervention: {type: Boolean},
-        fadeIntervention: {type: Boolean},
-        modifyIntervention: {type: Boolean},
-        continueIntervention: {type: Boolean},
-        intensityIntervention: {type: Boolean},
-        recycleThroughPSProcess: {type: Boolean},
-        seekEntitlement: {type: Boolean},
-        numStudsinInt: {type: Number},
-        numStudsDecreasedDisc: {type: Number},
-        effectivenessOfIntervention: {type: Number}
-      }
-    }
-  ],
-  tierThree: [
-    {
-      subject: {type: String},
-      problemId: {type: String},
-      problemAnalysis: {type: String},
-      goal: {type: String},
-      startDate: {type: Date},
-      endDate: {type: Date},
-      completedDate: {type: Date},
-      sessionsPerWeek: {type: Number},
-      minutesPerSession: {type: Number},
-      interventionistId: [{type: Schema.ObjectId, ref: "Faculty"}],
-      pmTools: [{type: String}],
-      pmFrequency: {type: String},
-      pmFaculty: {type: Schema.ObjectId, ref: "Faculty"},
-      improvement: {type: String},
-      notes: {type: String},
-      data: {
-        regression: {type: Boolean},
-        noChange: {type: Boolean},
-        discontinueIntervention: {type: Boolean},
-        fadeIntervention: {type: Boolean},
-        modifyIntervention: {type: Boolean},
-        continueIntervention: {type: Boolean},
-        intensityIntervention: {type: Boolean},
-        recycleThroughPSProcess: {type: Boolean},
-        seekEntitlement: {type: Boolean}
-      }
+      regression: {type: Boolean},
+      noChange: {type: Boolean},
+      decreaseDiscrepancy: {type: Boolean},
+      discontinueIntervention: {type: Boolean},
+      fadeIntervention: {type: Boolean},
+      modifyIntervention: {type: Boolean},
+      continueIntervention: {type: Boolean},
+      intensityIntervention: {type: Boolean},
+      recycleThroughPSProcess: {type: Boolean},
+      seekEntitlement: {type: Boolean},
+      numStudsinInt: {type: Number},
+      numStudsDecreasedDisc: {type: Number},
+      effectivenessOfIntervention: {type: Number}
     }
   ]
 });

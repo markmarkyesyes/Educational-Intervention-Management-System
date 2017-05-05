@@ -1,22 +1,40 @@
 const express = require("express");
 let router = express.Router();
+const mongoose = require("mongoose");
+const models = require("../models");
+const Faculty = models.Faculty;
 const passport = require("passport");
+const {populateDashboard} = require("../services/db/getStudents");
 
 ////
 //Passport Strategy
 ////
-const l = require("../strategy/local");
-passport.use(l.local);
+const {local} = require("../strategy/local");
+passport.use(local);
+
+//Temporary user object method for db queries
+let tempUser = () => {
+  return Faculty.findOne({email: "foo@bar.com"}).then(tempUser => {
+    return tempUser;
+  });
+};
 
 ////
 //Routes
 ////
 let onIndex = (req, res) => {
-  if (!req.user) {
-    res.render("home");
-  } else {
-    res.redirect("/login");
-  }
+  tempUser().then(user => {
+    populateDashboard(user._id).then(dashboard => {
+      console.log("hello", JSON.stringify(dashboard, null, 2));
+
+      if (!req.user) {
+        // console.log(populateDashboard(user._id));
+        res.render("home", {dashboard, user});
+      } else {
+        res.redirect("/login");
+      }
+    });
+  });
 };
 
 let onUnauthenticatedVisit = (req, res) => {

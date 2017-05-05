@@ -1,1 +1,25 @@
-<h1>Hello World</h1>
+<h1>Welcome, {{user.fname}}</h1>
+
+<table class="table table-striped">
+  <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Report</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each dashboard.pmStudents as |pmStudent|}}
+      {{#if pmStudent.tierTwo}}
+      <tr>
+        <td>{{pmStudent.fname}}</td>
+        <td>{{pmStudent.lname}}</td>
+        <!-- There can only be one report of each subject at each level -->
+        {{#each pmStudent.tierTwo as |t2Report|}}
+        <td><a href="{{t2Report._id}}">Tier Two Report: {{t2Report.subject}}</td>
+        {{/each}}
+      </tr>
+      {{/if}}
+    {{/each}}
+    </tbody>
+</table>

@@ -10,93 +10,20 @@ let FacultySchema = new Schema({
   passwordHash: {type: String},
   gradesTaught: [{type: Number}],
   notes: [{type: String}],
-  pmStudents: {
-    tierOneStudents: [
-      {
-        type: Schema.ObjectId,
-        ref: "Student",
-        allowNull: true
-      }
-    ],
-    tierTwoStudents: [
-      {
-        type: Schema.ObjectId,
-        ref: "Student",
-        allowNull: true
-      }
-    ],
-    tierThreeStudents: [
-      {
-        type: Schema.ObjectId,
-        ref: "Student",
-        allowNull: true
-      }
-    ],
-    tierOneIntegrityForms: [
-      {
-        type: Schema.ObjectId,
-        ref: "Student",
-        allowNull: true
-      }
-    ],
-    tierTwoIntegrityForms: [
-      {
-        type: Schema.ObjectId,
-        ref: "Student",
-        allowNull: true
-      }
-    ],
-    tierThreeIntegrityForms: [
-      {
-        type: Schema.ObjectId,
-        ref: "Student, allowNull: true"
-      }
-    ]
-  },
-  interventionStudents: {
-    tierOneStudents: [
-      {
-        type: Schema.ObjectId,
-        ref: "Student",
-        allowNull: true
-      }
-    ],
-    tierTwoStudents: [
-      {
-        type: Schema.ObjectId,
-        ref: "Student",
-        allowNull: true
-      }
-    ],
-    tierThreeStudents: [
-      {
-        type: Schema.ObjectId,
-        ref: "Student",
-        allowNull: true
-      }
-    ],
-    tierOneIntegrityForms: [
-      {
-        type: Schema.ObjectId,
-        ref: "Student",
-        allowNull: true
-      }
-    ],
-    tierTwoIntegrityForms: [
-      {
-        type: Schema.ObjectId,
-        ref: "Student",
-        allowNull: true
-      }
-    ],
-    tierThreeIntegrityForms: [
-      {
-        type: Schema.ObjectId,
-        ref: "Student",
-        allowNull: true
-      }
-    ]
-  }
+  pmStudents: [
+    {
+      type: Schema.ObjectId,
+      ref: "Student",
+      allowNull: true
+    }
+  ],
+  intStudents: [
+    {
+      type: Schema.ObjectId,
+      ref: "Student",
+      allowNull: true
+    }
+  ]
 });
 
 FacultySchema.methods.validatePassword = function(password) {

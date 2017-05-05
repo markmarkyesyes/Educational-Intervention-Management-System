@@ -17,22 +17,8 @@ Faculty.remove({}, function(err) {
       password: "Foo", //,(Hash with Bcrypt/passport)
       gradesTaught: [1, 2, 3],
       notes: ["Foo", "Bar"],
-      pmStudents: {
-        tierOneStudents: [null],
-        tierTwoStudents: [null],
-        tierThreeStudents: [null],
-        tierOneIntegrityForms: [null],
-        tierTwoIntegrityForms: [null],
-        tierThreeIntegrityForms: [null]
-      },
-      interventionStudents: {
-        tierOneStudents: [null],
-        tierTwoStudents: [null],
-        tierThreeStudents: [null],
-        tierOneIntegrityForms: [null],
-        tierTwoIntegrityForms: [null],
-        tierThreeIntegrityForms: [null]
-      }
+      pmStudents: [],
+      intStudents: []
     })
       .then(res => {
         console.log("created one faculty member", res);
@@ -66,27 +52,35 @@ Faculty.remove({}, function(err) {
               pmFrequency: "3-5",
               pmFacultyId: res._id,
               notes: null,
-              data: {
-                regression: true,
-                noChange: true,
-                decreaseDiscrepancy: false,
-                discontinueIntervention: true,
-                fadeIntervention: true,
-                modifyIntervention: true,
-                continueIntervention: true,
-                intensityIntervention: true,
-                recycleThroughPSProcess: true,
-                seekEntitlement: true,
-                numStudsinInt: 5,
-                numStudsDecreasedDisc: 2,
-                effectivenessOfIntervention: 0
-              }
+              regression: true,
+              noChange: true,
+              decreaseDiscrepancy: false,
+              discontinueIntervention: true,
+              fadeIntervention: true,
+              modifyIntervention: true,
+              continueIntervention: true,
+              intensityIntervention: true,
+              recycleThroughPSProcess: true,
+              seekEntitlement: true,
+              numStudsinInt: 5,
+              numStudsDecreasedDisc: 2,
+              effectivenessOfIntervention: 0
             }
           ]
         });
       })
       .then(resStudent => {
         console.log("created Student", resStudent);
+        let facultyId = resStudent.hrTeacher;
+        return Faculty.update(
+          {_id: facultyId},
+          {
+            $push: {pmStudents: resStudent}
+          }
+        );
+      })
+      .then(resTeacher => {
+        console.log("created teacher", resTeacher);
       })
       .catch(err => {
         console.log("failed!", err);

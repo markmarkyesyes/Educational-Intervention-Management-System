@@ -13,17 +13,17 @@ Add mongoose
 
 Add PassportJs
   //-implement login page
-  -add passport-local strategy
-    -add sessions
-    -make sure password is stored with argon2
-    -model password methods for Faculty
+  ??-add passport-local strategy
+    //-add sessions
+    ??-make sure password is stored with argon2
+    //-model password methods for Faculty
   -verify access
-  -link logout in navbar to logout passport function
+  //-link logout in navbar to logout passport function
 
 Create Dashboard
 -add favicon
-  -list students in database (name, grade, hrteacher, forms )
-    -only list students with forms
+  //-list students in database (name, grade, hrteacher, forms )
+    //-only list students with forms
   -allow teacher to view or print any worksheet from the student
   -implement a new worksheet flow at the top of the page
     -one row,
@@ -47,6 +47,7 @@ Create Tier Two Worksheet
   -Review validations
   -Make sure the data is persisted to an object in the students appropriate list using form submission data
   -Return user to dashboard after creation with success flash message
+  -use seed function for updating faculty student lists to update on successful form submission
 
 
 --COMPLETES EXPECTED IMPLEMENTATION--
