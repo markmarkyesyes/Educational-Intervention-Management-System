@@ -8,6 +8,22 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: false}));
 
 ////
+//Mongoose
+////
+var mongoose = require("mongoose");
+app.use((req, res, next) => {
+  if (mongoose.connection.readyState) {
+    console.log("connected to MongoDB");
+    next();
+  } else {
+    require("./mongo")(req).then(() => {
+      console.log("connected to MongoDB");
+      next();
+    });
+  }
+});
+
+////
 //Handlebars
 ////
 const hbs = require("express-handlebars");

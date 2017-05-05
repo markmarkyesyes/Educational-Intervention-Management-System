@@ -4,7 +4,7 @@ make faculty select boxes searchable by typing
 Add Every feature/commit to Readme.md as a note, refactor later
 
 Add mongoose
-  -config
+  //-config
   -Faculty model
     -model password methods
   -Student model
@@ -20,6 +20,7 @@ Add PassportJs
   -link logout in navbar to logout passport function
 
 Create Dashboard
+-add favicon
   -list students in database (name, grade, hrteacher, forms )
     -only list students with forms
   -allow teacher to view or print any worksheet from the student
@@ -33,8 +34,13 @@ Create Dashboard
         -will load students name, and predetermined info into hidden fields
         -will serve the proper form with the conditional objects determined by subject
 
+
 Create Tier Two Worksheet
   -Make sure all inputs for the district template are included
+    -conditionally populate tier intervention radio options
+    -serve student data into hidden fields
+    -serve previous problem id as the devault value for the textarea
+    -serve previous intervention descriptions as hidden input fields and display lists
   -Review validations
   -Make sure the data is persisted to an object in the students appropriate list using form submission data
   -Return user to dashboard after creation with success flash message

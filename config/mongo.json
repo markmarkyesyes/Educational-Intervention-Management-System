@@ -1,0 +1,13 @@
+{
+  "development": {
+    "database":"psd150-interventions-development",
+    "host":"localhost"
+  },
+  "test": {
+    "database": "psd150-interventions-test",
+    "host": "localhost"
+  },
+  "production": {
+    "use_env_variable": "MONGODB_URI"
+  }
+}
