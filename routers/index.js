@@ -11,6 +11,7 @@ const {populateDashboard} = require("../services/db/getStudents");
 let onIndex = (req, res) => {
   if (req.user) {
     populateDashboard(req.user._id).then(dashboard => {
+      console.log(dashboard);
       res.render("home", {dashboard, user: req.user});
     });
   } else {

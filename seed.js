@@ -73,12 +73,12 @@ Faculty.remove({}, function(err) {
                 completedDate: Date.now(),
                 sessionsPerWeek: "3-5",
                 minutesPerSession: "15-20",
-                interventionistId: [
+                interventionistName: [
                   `${faculty[facultyIndex - 1].fname} ${faculty[facultyIndex - 1].lname}`
                 ],
                 pmTools: {progEarlyRdng: "on", progSightWords: "on"},
                 pmFrequency: "3-5",
-                pmFacultyId: [
+                pmFacultyName: [
                   `${faculty[facultyIndex - 1].fname} ${faculty[facultyIndex - 1].lname}`
                 ],
                 notes: null,

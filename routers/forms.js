@@ -3,6 +3,7 @@ let router = express.Router();
 const mongoose = require("mongoose");
 const models = require("../models");
 const Faculty = models.Faculty;
+const Student = models.Student;
 const strategies = require("../helpers/interventionStrategies");
 const progressTools = require("../helpers/progressTools");
 const {getFacultyInfo} = require("../helpers/getStudentNames");
@@ -45,29 +46,45 @@ let loadTemplate = (req, res) => {
 
 let saveWorksheet = (req, res) => {
   console.log(req.body);
-
-  res.render("home");
+  let newWorksheet = {
+    subject: req.body.subject,
+    problemID: req.body.problemId,
+    problemAnalysis: req.body.problemAnalysis,
+    goal: req.body.goal,
+    descriptionTierTwo: req.body.intStrats,
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
+    completedDate: req.body.completedDate,
+    minutesPerSession: req.body.minutesPerSession,
+    sessionsPerWeek: req.body.sessionsPerWeek,
+    interventionistName: req.body.interventionistName,
+    pmFacultyName: req.body.pmFacultyName,
+    pmFrequency: req.body.pmFrequency,
+    pmTools: req.body.pmIngTool
+  };
+  let name = req.body.student.split(" ");
+  Student.update(
+    {fname: name[0], lname: name[1]},
+    {
+      $push: {tierTwo: newWorksheet}
+    }
+  )
+    .then(() => {
+      return Student.find({fname: name[0], lname: name[1]}, {_id: 1});
+    })
+    .then(student => {
+      console.log("got student id for pushing to faculty Array", student);
+      return Faculty.update(
+        {_id: req.body._id},
+        {
+          $push: {pmStudents: student[0]._id}
+        }
+      );
+    })
+    .then(() => {
+      res.redirect("/");
+    });
 };
-// { subject: 'reading',
-// student: 'London Fadel',
-// tier: 'Two',
-// _id: '',
-// problemId: 'casfdasdasdsa',
-// problemAnalysis: 'asdasdasd',
-// goal: 'dasdasda',
-// intStrats:
-// { descSightWordsDrast: 'on',
-// descIncWordRehrsl: 'on',
-// descSixMinSol: 'on' },
-// startDate: '2017-05-12',
-// endDate: '2017-05-08',
-// completedDate: '2017-05-01',
-// minutesPerSession: 'dasda',
-// sessionsPerWeek: 'asdasd',
-// interventionistName: 'asdasdasd',
-// pmFacultyName: 'asdasdasda',
-// pmFrequency: 'asdasdasdas',
-// pmIngTool: { progEarlyRdng: 'on', progSightWords: 'on' } }
 
 router.post("/new", loadTemplate);
 router.post("/submitWorksheet", saveWorksheet);
