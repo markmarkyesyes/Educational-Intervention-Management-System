@@ -41,9 +41,9 @@ Create Dashboard
 
 Create Tier Two Worksheet
   -Make sure all inputs for the district template are included
-    -conditionally populate tier intervention radio options
+    //-conditionally populate tier intervention radio options
     //-serve student data into hidden fields
-    -serve previous problem id as the devault value for the textarea
+    //-serve previous problem id as the devault value for the textarea
     //-serve previous intervention descriptions as hidden input fields and display lists
     -make sure progress details(group one) will have select buttons where only one can be selected at a time
     -second group of progress details can select multiple
@@ -51,6 +51,11 @@ Create Tier Two Worksheet
   -Make sure the data is persisted to an object in the students appropriate list using form submission data
   -Return user to dashboard after creation with success flash message
   -use seed function for updating faculty student lists to update on successful form submission
+
+persist to database correctly and render a json confirmation page
+
+create a show page to display the data linked from student on the dashboard
+
 
 
 --COMPLETES EXPECTED IMPLEMENTATION--

@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const models = require("../models");
 const Faculty = models.Faculty;
 const strategies = require("../helpers/interventionStrategies");
+const progressDetails = require("../helpers/progressDetails");
 
 let loadTemplate = (req, res) => {
   let data = {};
@@ -11,6 +12,7 @@ let loadTemplate = (req, res) => {
   data.subject = req.body.subject;
   data.tier = req.body.tier;
   data.interventionStrategies = strategies[data.subject];
+  data.progressDetails = progressDetails[data.subject];
   switch (data.tier) {
     case "One":
       res.render("worksheets/tierOneWorksheet", data);

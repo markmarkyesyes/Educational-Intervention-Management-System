@@ -69,6 +69,16 @@
         <!-- progress monitor tools as radio buttons CONDITIONAL on subject selected  -->
 
     </div>
+    <div class="col-sm-10">
+      <hr />
+      {{#each progressDetails as |detail| }}
+      <div class="checkbox-inline">
+        <label>
+          <input type="checkbox" name="detail.field" > {{detail.label}}
+        </label>
+      </div>
+      {{/each}}
+    </div>
     <!-- <div class="col-sm-10"
       <ul class="list-inline">
         {{#each decisionPoints as |decisionPoint|}}
