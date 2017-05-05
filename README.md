@@ -2,7 +2,7 @@
 
 
 
-#For my project:
+# For my project:
 My project is an express application that allows a teacher to input educational
 intervention data for a student they are working with, and persist that data as a document to a database.
 The Teacher is also able to log into a dashboard, and see their students. Data is stored
@@ -17,7 +17,7 @@ model methods defined. (The models were changed significantly on conference with
 this application will be used for)
 
 
-#To Begin:
+# To Begin:
 cd into the project folder, and run:
   $ npm install  OR  $ yarn install
 
@@ -28,7 +28,7 @@ This will clear any existing data, create 50 faculty members with random data, a
 one completed Worksheet attached each.
 
 
-#Lets Party!
+# Lets Party!
 (Due to the timeframe, there are not any validations or required fields in the form or database.
   To enjoy the current functionality of the app, please be sure to populate all fields in the form
   before submitting.)
@@ -49,7 +49,7 @@ Login with the credentials explained above, and youre on your way to filing your
 intervention form!!! exciting!
 
 
-#Filing a Form
+# Filing a Form
 1. Click the leftmost dropdown menu at the top of the page, or begin typing to select a student.
 2. Select the Subject and Tier of the Worksheet you wish to create
 3. Clicking the button on the right will bring you to a form page where you will enter the
@@ -63,7 +63,7 @@ intervention form!!! exciting!
     is simply to assure that it is being attatched to our current user.
 
 
-#Where this app is going:
+# Where this app is going:
 My mother and everyone else working doing interventions (focused help for kids falling behind)
   in the local school district are currently working from spreadsheets so this is a start at a solution.
 
