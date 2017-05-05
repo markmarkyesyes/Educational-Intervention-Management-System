@@ -81,6 +81,9 @@ app.set("view engine", "hbs");
 const indexRouter = require("./routers/index");
 app.use("/", indexRouter);
 
+const formsRouter = require("./routers/forms");
+app.use("/form", formsRouter);
+
 ////
 //Server Listen
 ////
