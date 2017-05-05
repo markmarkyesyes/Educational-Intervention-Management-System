@@ -14,13 +14,15 @@ let getStudentsForFaculty = id => {
 
 let populateDashboard = id => {
   let dashboard = {};
-  return getStudentsForFaculty(id).then(students => {
-    dashboard.intStudents = students[0].intStudents;
-    dashboard.pmStudents = students[0].pmStudents;
-    getStudentNames().then(names => {
+  return getStudentsForFaculty(id)
+    .then(students => {
+      dashboard.intStudents = students[0].intStudents;
+      dashboard.pmStudents = students[0].pmStudents;
+      return getStudentNames();
+    })
+    .then(names => {
       dashboard.studentNames = names;
+      return dashboard;
     });
-    return dashboard;
-  });
 };
 module.exports = {populateDashboard};
