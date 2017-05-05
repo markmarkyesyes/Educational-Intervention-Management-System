@@ -1,5 +1,37 @@
-<h1>Welcome, {{user.fname}}</h1>
-
+<h1>Welcome, {{user.fname}} {{user.lname}}</h1>
+<hr />
+<form class="form-inline">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4 class="inline-headers">File an Intervention Report:</h4>
+      <div class="form-group">
+        <label for="studentName">Student</label>
+        <input type="text" class="form-control" name="studentName" id="studentName" list="studentnames" placeholder="...">
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <select class="form-control" name="subject" id="subject">
+          <option>Reading</option>
+          <option>Math</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tier">Tier</label>
+        <select class="form-control" name="tier" id="tier">
+          <option>Two</option>
+        </select>
+      </div>
+      <datalist id="studentnames">
+        <option value="test">
+        {{#each students as |student|}}
+          <option value="{{student.fname}} {{student.lname}}">
+        {{/each}}
+      </datalist>
+      <button type="submit" class="btn btn-default">Create Report</button>
+    </div>
+  </div>
+</form>
+<hr />
 <table class="table table-striped">
   <thead>
       <tr>
