@@ -5,17 +5,18 @@ Add Every feature/commit to Readme.md as a note, refactor later
 
 Add mongoose
   //-config
-  -Faculty model
-    -model password methods
+  //-Faculty model
   -Student model
     -form validations
   -create seed and deseed script
+    //-for Faculty
 
 Add PassportJs
   -implement login page
   -add passport-local strategy
     -add sessions
     -make sure password is stored with argon2
+    -model password methods for Faculty
   -verify access
   -link logout in navbar to logout passport function
 
