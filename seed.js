@@ -59,11 +59,6 @@ Faculty.remove({}, function(err) {
                 Problem_Analysis: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
                 subject: "Reading",
                 Goal: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
-                Description_of_Interv_Tier_1: {
-                  descSightWordsDrast: "on",
-                  descIncWordRehrsl: "on",
-                  descSixMinSol: "on"
-                },
                 Description_of_Interv_Tier_2: {
                   descSightWordsDrast: "on",
                   descIncWordRehrsl: "on",

@@ -20,19 +20,19 @@ let loadTemplate = (req, res) => {
     console.log(faculty);
     data.interventionResult = interventionResult;
     data.dataDecision = dataDecision;
-    data.interventionEffectiveness = dataDecision;
+    data.interventionEffectiveness = interventionEffectiveness;
     data.facultyNames = faculty;
     data.student = req.body.studentName;
-    data.subject = req.body.subject;
-    data.tier = req.body.tier;
+    data.Subject = req.body.Subject;
     data.currUser = req.body._id;
-    data.interventionStrategies = strategies[data.subject];
-    data.progressTools = progressTools[data.subject];
-    switch (data.tier) {
+    data.interventionStrategies = strategies[data.Subject];
+    data.progressTools = progressTools[data.Subject];
+    switch (req.body.tier) {
       case "One":
         res.render("worksheets/tierOneWorksheet", data);
         break;
       case "Two":
+        console.log(progressTools[data.subject]);
         res.render("worksheets/tierTwoWorksheet", data);
         break;
       case "Three":
@@ -47,22 +47,21 @@ let loadTemplate = (req, res) => {
 let saveWorksheet = (req, res) => {
   console.log(req.body);
   let newWorksheet = {
-    subject: req.body.subject,
-    problemID: req.body.problemId,
-    problemAnalysis: req.body.problemAnalysis,
-    goal: req.body.goal,
-    descriptionTierTwo: req.body.intStrats,
-    startDate: req.body.startDate,
-    endDate: req.body.endDate,
-    completedDate: req.body.completedDate,
-    minutesPerSession: req.body.minutesPerSession,
-    sessionsPerWeek: req.body.sessionsPerWeek,
-    interventionistName: req.body.interventionistName,
-    pmFacultyName: req.body.pmFacultyName,
-    pmFrequency: req.body.pmFrequency,
-    pmTools: req.body.pmIngTool
+    Subject: req.body.Subject,
+    problem_ID: req.body.Problem_ID,
+    Problem_Analysis: req.body.Problem_Analysis,
+    Goal: req.body.Goal,
+    Description_of_Interv_Tier_2: req.body.Description_of_Interv_Tier_2,
+    Tier_2_Date_Started: req.body.Tier_2_Date_Started,
+    Tier_2_Date_Ended: req.body.Tier_2_Date_Ended,
+    Tier_2_Date_Completed: req.body.Tier_2_Date_Completed,
+    Tier_2_minssessions: req.body.Tier_2_minssessions,
+    Tier_2_SessionsWeek: req.body.Tier_2_SessionsWeek,
+    Frequency_PMing: req.body.pmFrequency,
+    PMing_Tool: req.body.pmIngTool
   };
   let name = req.body.student.split(" ");
+
   Student.update(
     {fname: name[0], lname: name[1]},
     {
