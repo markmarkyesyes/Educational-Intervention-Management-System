@@ -1,0 +1,20 @@
+<label for="startDate">Start Date</label>
+<input type="date" class="form-control" id="startDate" name="Tier_2_Date_Started"> </input><br />
+<label for="endDate">End Date</label>
+<input type="date" class="form-control" id="endDate" name="Tier_2_Date_Ended"> </input><br />
+<label for="completedDate">Completed Date</label>
+<input type="date" class="form-control" id="completedDate" name="Tier_2_Date_Completed"> </input><br />
+<hr />
+<label for="minutesPerSession">Minutes Per Session</label>
+<input type="text" class="form-control" id="minutesPerSession" name="Tier_2_minssessions" /><br />
+<label for="sessionsPerWeek">Sessions Per Week</label>
+<input type="text" class="form-control" id="sessionsPerWeek" name="Tier_2_SessionsWeek" /><br />
+<hr />
+<datalist id="facultyNames">
+  {{#each facultyNames as |faculty|}}
+    <option value="{{faculty}}">
+  {{/each}}
+</datalist>
+<label for="interventionistName">Select Interventionist and Progress Monitor</label><br />
+<input type="text" list="facultyNames" class="form-control" id="interventionistName" name="Tier_2_Interventionist" />
+<br />

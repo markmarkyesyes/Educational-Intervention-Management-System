@@ -32,8 +32,7 @@ let loadTemplate = (req, res) => {
         res.render("worksheets/tierOneWorksheet", data);
         break;
       case "Two":
-        console.log(progressTools[data.subject]);
-        res.render("worksheets/tierTwoWorksheet", data);
+        res.render("worksheets/tierTwo-ThreeWorksheet", data);
         break;
       case "Three":
         res.render("worksheets/tierThreeWorksheet", data);
