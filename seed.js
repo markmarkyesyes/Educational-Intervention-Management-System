@@ -55,47 +55,38 @@ Faculty.remove({}, function(err) {
             school: "Franklin",
             tierTwo: [
               {
-                problemID: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
-                problemAnalysis: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
+                Problem_ID: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
+                Problem_Analysis: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
                 subject: "Reading",
-                goal: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
-                descriptionTierOne: {
+                Goal: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
+                Description_of_Interv_Tier_1: {
                   descSightWordsDrast: "on",
                   descIncWordRehrsl: "on",
                   descSixMinSol: "on"
                 },
-                descriptionTierTwo: {
+                Description_of_Interv_Tier_2: {
                   descSightWordsDrast: "on",
                   descIncWordRehrsl: "on",
                   descSixMinSol: "on"
                 },
-                startDate: Date.now(),
-                endDate: Date.now(),
-                completedDate: Date.now(),
-                sessionsPerWeek: "3-5",
-                minutesPerSession: "15-20",
-                interventionistName: [
+                Tier_2_Date_Started: Date.now(),
+                Tier_2_Date_Ended: Date.now(),
+                Tier_2_Date_Completed: Date.now(),
+                Tier_2_SessionsWeek: "3-5",
+                Tier_2_minssessions: "15-20",
+                Tier_2_Interventionist: [
                   `${faculty[facultyIndex - 1].fname} ${faculty[facultyIndex - 1].lname}`
                 ],
                 pmTools: {progEarlyRdng: "on", progSightWords: "on"},
                 pmFrequency: "3-5",
-                pmFacultyName: [
-                  `${faculty[facultyIndex - 1].fname} ${faculty[facultyIndex - 1].lname}`
-                ],
                 notes: null,
-                regression: true,
-                noChange: true,
-                decreaseDiscrepancy: false,
-                discontinueIntervention: true,
-                fadeIntervention: true,
-                modifyIntervention: true,
-                continueIntervention: true,
-                intensityIntervention: true,
-                recycleThroughPSProcess: true,
-                seekEntitlement: true,
-                numStudsinInt: 5,
-                numStudsDecreasedDisc: 2,
-                effectivenessOfIntervention: 0
+                interventionResult: {No_Change: "on"},
+                dataDecision: {Fade_Intervention: "on"},
+                interventionEffectiveness: {
+                  numStudsinInt: 5,
+                  numStudsDecreasedDisc: 2,
+                  effectivenessOfIntervention: 0
+                }
               }
             ]
           });

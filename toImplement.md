@@ -25,6 +25,9 @@ Create Dashboard
   //-list students in database (name, grade, hrteacher, forms )
     //-only list students with forms
   -allow teacher to view or print any worksheet from the student
+  -when a student is present on a teachers dashboard,
+    -allow them to view dropdowns of the students paperwork sorted by tier
+    -further divided between reading, math, and behavior
   //-implement a new worksheet flow at the top of the page
     //-one row,
       //1. autofill student names from db
@@ -49,30 +52,36 @@ Create Tier Two Worksheet
     //-import teacher names as datalist (via helper)
     -make sure progress details(group one) will have select buttons where only one can be selected at a time
     -second group of progress details can select multiple
+    -break each section into partials
   -Review validations
-  //-Make sure the data is persisted to a Document in the students appropriate list using form submission data
+  -Make sure the data is persisted to a Document in the students appropriate list using form submission data
+  -break intervention effectiveness section into a logic module that returns directly to form persistence
   //-Return user to dashboard after creation
       -with success flash messages
 
-//-persist to database correctly
-    and render a json confirmation page
+-persist to database correctly
+-persist reference to the student to interventionist and hr teacher on creation
 
--create a show page to display the data linked from student on the dashboard
-
-
+-changing db keys
+  -first models,
+  -second seeds,
+  -third in home page,
+  -fourth in forms serving page
+   -including helper methods
+  -fifth in form page(break out into partials)
+  -sixth in form persistence(implement new form persistence system)
+-add student codes
 
 --COMPLETED EXPECTED IMPLEMENTATION--
 Refactor: getStudentNames method - rename to getNames
           initial state for form creation
           combine id/populator helpers
           reformat id's to match db
-          Make inputs identical to model so we can persist the response object without modification
+          (once validations are in place)Make inputs identical to model so we can persist the response object without modification
 
 Add DocX Templater
   -add to student display on Dashboard
   -clicking creates the file and sends it to the browser print page
-
-Add a translating layer for database values
 
 Login features
   -not a user? send email to admin to notify
