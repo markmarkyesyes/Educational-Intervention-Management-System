@@ -19,7 +19,7 @@ let StudentSchema = new Schema({
       Tier_2_Date_Completed: {type: Date},
       Tier_2_SessionsWeek: {type: String},
       Tier_2_minssessions: {type: String},
-      Tier_2_Interventionist: {type: Schema.ObjectId, ref: "Faculty"},
+      Tier_2_Interventionist: [{type: Schema.ObjectId, ref: "Faculty"}],
       PMing_Tool: {type: Object},
       Frequency_PMing: {type: String},
       Person_PMing: {type: Schema.ObjectId, ref: "Faculty"},

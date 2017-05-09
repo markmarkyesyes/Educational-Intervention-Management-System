@@ -69,9 +69,7 @@ Faculty.remove({}, function(err) {
                 Tier_2_Date_Completed: Date.now(),
                 Tier_2_SessionsWeek: "3-5",
                 Tier_2_minssessions: "15-20",
-                Tier_2_Interventionist: [
-                  `${faculty[facultyIndex - 1].fname} ${faculty[facultyIndex - 1].lname}`
-                ],
+                Tier_2_Interventionist: [faculty[facultyIndex - 1]._id],
                 pmTools: {progEarlyRdng: "on", progSightWords: "on"},
                 pmFrequency: "3-5",
                 notes: null,
