@@ -36,7 +36,24 @@
     </div>
     <div class="col-sm-4">
       <!-- add validations for earliest, latest -->
-      {{> worksheetPartials/_tier2InterventionDescription}}
+      <label for="startDate">Start Date</label>
+      <input type="date" class="form-control" id="startDate" name="Tier_2_Date_Started"> </input><br />
+      <label for="endDate">End Date</label>
+      <input type="date" class="form-control" id="endDate" name="Tier_2_Date_Ended"> </input><br />
+      <hr />
+      <label for="minutesPerSession">Minutes Per Session</label>
+      <input type="text" class="form-control" id="minutesPerSession" name="Tier_2_minssessions" /><br />
+      <label for="sessionsPerWeek">Sessions Per Week</label>
+      <input type="text" class="form-control" id="sessionsPerWeek" name="Tier_2_SessionsWeek" /><br />
+      <hr />
+      <datalist id="facultyNames">
+        {{#each facultyNames as |faculty|}}
+          <option value="{{faculty}}">
+        {{/each}}
+      </datalist>
+      <label for="interventionistName">Select Interventionist and Progress Monitor</label><br />
+      <input type="text" list="facultyNames" class="form-control" id="interventionistName" name="Tier_2_Interventionist" />
+      <br />
       <label for="pmFrequency">Frequency of Progress Monitoring</label>
       <span>After:</span><input type="text" class="form-control" id="pmFrequency" name="Frequency_PMing">Sessions</input><br />
       <label for="pmTools">Select Progress Monitoring Tools</label><br />
@@ -51,26 +68,6 @@
     </div>
     <div class="col-sm-10">
       <hr />
-    </div>
-    <div class="col-sm-3">
-      <label>Intervention Result </label>
-        {{#each interventionResult as |result|}}
-          <div class="radio">
-            <input type="radio" name="dataDecision[{{interventionResult.id}}]" id="{{result.id}}" value="{{result.id}}">
-            {{result.label}}
-            </input>
-          </div>
-        {{/each}}
-    </div>
-    <div class="col-sm-3">
-      <label for="dataDecision">Decision for Intervention</label><br />
-      {{#each dataDecision as |decision| }}
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" name="dataDecision[{{decision.field}}]" >{{decision.label}}</input>
-          </label>
-        </div>
-      {{/each}}
     </div>
     <div class="col-sm-10">
       <button type="submit" class="btn btn-default">Submit</button>

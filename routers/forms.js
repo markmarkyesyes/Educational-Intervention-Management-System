@@ -32,7 +32,7 @@ let loadTemplate = (req, res) => {
         res.render("worksheets/tierOneWorksheet", data);
         break;
       case "Two":
-        res.render("worksheets/tierTwo-ThreeWorksheet", data);
+        res.render("worksheets/newTierTwoWorksheet", data);
         break;
       case "Three":
         res.render("worksheets/tierThreeWorksheet", data);
