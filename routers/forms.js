@@ -13,21 +13,16 @@ const {
   interventionEffectiveness
 } = require("../helpers/resultOptions");
 
-let loadTemplate = (req, res) => {
+let onFormCreate = (req, res) => {
   let data = {};
-  console.log(req.body);
   getFacultyInfo().then(faculty => {
-    console.log(faculty);
-    data.interventionResult = interventionResult;
-    data.dataDecision = dataDecision;
-    data.interventionEffectiveness = interventionEffectiveness;
     data.facultyNames = faculty;
-    data.student = req.body.studentName;
-    data.Subject = req.body.Subject;
-    data.currUser = req.body._id;
+    data.student = req.query.studentName;
+    data.Subject = req.query.Subject;
+    data.currUser = req.user._id;
     data.interventionStrategies = strategies[data.Subject];
     data.progressTools = progressTools[data.Subject];
-    switch (req.body.tier) {
+    switch (req.query.tier) {
       case "One":
         res.render("worksheets/tierOneWorksheet", data);
         break;
@@ -36,7 +31,7 @@ let loadTemplate = (req, res) => {
         break;
       case "Three":
         res.render("worksheets/tierThreeWorksheet", data);
-        breakt;
+        break;
       default:
         res.redirect("/");
     }
@@ -84,7 +79,7 @@ let saveWorksheet = (req, res) => {
     });
 };
 
-router.post("/new", loadTemplate);
-router.post("/submitWorksheet", saveWorksheet);
+router.get("/new", onFormCreate);
+router.post("/startWorksheet", saveWorksheet);
 
 module.exports = router;
