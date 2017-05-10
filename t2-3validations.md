@@ -3,27 +3,28 @@ t2
 (tier 2&3)
   First_Name
   Last_Name
-  Tier_2_Date_Completed
-  Subject
-  HR_Teacher
-  Grade_Level
-  School
+  Tier_2_Date_Completed (must be date.now)
+  Subject( passed in from dropdown (validate strings in dropdown))
+  HR_Teacher (added from student after submission)
+  Grade_Level (added from student after submission)
+  School (added from student after submission)
 
 (tier 2)
   Problem_ID
   Problem_Analysis
   Goal
   Description_of_Interv_Tier_2  
-  Tier_2_Date_Started
-  Tier_2_Date_Ended
-  Tier_2_SessionsWeek
-  Tier_2_minssessions
-  Tier_2_Interventionist
+  Tier_2_Date_Started(no validation, must be type: date)
+  Tier_2_Date_Ended(cant be before today)
+  Tier_2_SessionsWeek (/\d\d\-\d\d/)
+  Tier_2_minssessions (/\d\d\-\d\d/)
+  Tier_2_Interventionist (set by form data)
 
 (tier 2&3)
   PMing_Tool
-  Frequency_PMing
-  Person_PMing
+  Frequency_PMing (/\d\d/)
+  Person_PMing (set after submission)
+
 
 (tier 2&3)
   Improvement

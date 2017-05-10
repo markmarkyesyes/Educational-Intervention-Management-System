@@ -43,17 +43,18 @@ Create Dashboard
 
 
 Create Tier Two Worksheet
-  -Make sure all inputs for the district template are included
+  //-Make sure all inputs for the district template are included
     //-conditionally populate tier intervention radio options
     //-serve student data into hidden fields
     //-serve previous problem id as the devault value for the textarea
     //-serve previous intervention descriptions as hidden input fields and display lists
     //-label pm tools
     //-import teacher names as datalist (via helper)
-    -make sure progress details(group one) will have select buttons where only one can be selected at a time
-    -second group of progress details can select multiple
-    -break each section into partials
+    //-make sure progress details(group one) will have select buttons where only one can be selected at a time
+    //-second group of progress details can select multiple
+    //-break each section into partials
   -Review validations
+    -add note as to mins/session validation
   -Make sure the data is persisted to a Document in the students appropriate list using form submission data
   -break intervention effectiveness section into a logic module that returns directly to form persistence
   //-Return user to dashboard after creation
@@ -62,6 +63,7 @@ Create Tier Two Worksheet
 -persist to database correctly
 -persist reference to the student to interventionist and hr teacher on creation
 
+Split form entry into starting and closing pages
 
 -changing db keys
   //-first models,

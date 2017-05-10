@@ -38,7 +38,7 @@
       <!-- add validations for earliest, latest -->
       {{> worksheetPartials/_tier2InterventionDescription}}
       <label for="pmFrequency">Frequency of Progress Monitoring</label>
-      <input type="text" class="form-control" id="pmFrequency" name="Frequency_PMing" /><br />
+      <span>After:</span><input type="text" class="form-control" id="pmFrequency" name="Frequency_PMing">Sessions</input><br />
       <label for="pmTools">Select Progress Monitoring Tools</label><br />
         {{#each progressTools as |pmTool|}}
           <div class="checkbox">
