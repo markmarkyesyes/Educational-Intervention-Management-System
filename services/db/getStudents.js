@@ -13,6 +13,7 @@ let populateDashboard = id => {
   let dashboard = {};
   return getStudentsForFaculty(id)
     .then(students => {
+      console.log(students);
       dashboard.students = students[0].students;
       return getStudentNames();
     })

@@ -3,6 +3,7 @@ const models = require("./models");
 const Faculty = models.Faculty;
 const Student = models.Student;
 const faker = require("faker");
+const shortid = require("shortid");
 mongoose.connect("mongodb://localhost/psd150-interventions-development");
 
 var faculty = [];
@@ -56,6 +57,7 @@ Faculty.remove({}, function(err) {
             school: "Franklin",
             tierTwo: [
               {
+                id: shortid.generate(),
                 Problem_ID: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
                 Problem_Analysis: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
                 subject: "Reading",

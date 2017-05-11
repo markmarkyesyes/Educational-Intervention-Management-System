@@ -63,9 +63,18 @@ let saveWorksheet = (req, res) => {
     .then(student => {
       return Faculty.update(
         {
-          _id: {
-            $in: [student[0].hrTeacher, req.user._id]
-          }
+          $and: [
+            {
+              _id: {
+                $in: [student[0].hrTeacher, req.user._id]
+              }
+            },
+            {
+              students: {
+                $nin: [student[0]._id]
+              }
+            }
+          ]
         },
         {
           $push: {students: student[0]._id}

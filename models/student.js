@@ -10,6 +10,7 @@ let StudentSchema = new Schema({
   school: {type: String},
   tierTwo: [
     {
+      id: {type: String},
       Problem_ID: {type: String},
       Problem_Analysis: {type: String},
       Subject: {type: String},
