@@ -38,7 +38,23 @@ let onFormCreate = (req, res) => {
   });
 };
 
-let onFormClose = (req, res) => {};
+let onFormClose = (req, res) => {
+  console.log(req.query);
+  if (req.user) {
+    console.log("in get router");
+    let currWorksheet;
+    Student.find({_id: req.query.studentId}).then(student => {
+      student[0].tierTwo.forEach(worksheet => {
+        console.log(worksheet);
+        if (worksheet._id.toString() === req.query.worksheet) {
+          res.render("worksheets/closeTierTwoWorksheet", {worksheet});
+        }
+      });
+    });
+  } else {
+    res.redirect("/login");
+  }
+};
 
 let saveWorksheet = (req, res) => {
   let newWorksheet = {

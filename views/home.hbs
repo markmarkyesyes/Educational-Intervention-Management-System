@@ -49,7 +49,8 @@
         <!-- There can only be one report of each subject at each level -->
         <td>
           <form class="form-inline" action="/form/close" method="get">
-            <select class="form-control">
+            <input type="hidden" name="studentId" value="{{student._id}}"/>
+            <select class="form-control" name="worksheet">
               {{#each student.tierTwo as |t2Report|}}
                 <option value="{{t2Report._id}}">Tier Two Report: {{t2Report.Subject}}</option>
               {{/each}}
