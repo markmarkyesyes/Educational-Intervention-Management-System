@@ -60,7 +60,7 @@ Faculty.remove({}, function(err) {
                 id: shortid.generate(),
                 Problem_ID: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
                 Problem_Analysis: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
-                subject: "Reading",
+                Subject: "Reading",
                 Goal: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
                 Description_of_Interv_Tier_2: {
                   descSightWordsDrast: "on",
