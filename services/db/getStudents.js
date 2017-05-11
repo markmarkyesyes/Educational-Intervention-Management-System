@@ -17,7 +17,6 @@ let populateDashboard = id => {
       return getStudentNames();
     })
     .then(names => {
-      console.log(names);
       dashboard.studentNames = names;
       return dashboard;
     });
