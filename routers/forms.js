@@ -43,6 +43,8 @@ let onFormClose = (req, res) => {
     let data = {};
     data.interventionResult = interventionResult;
     data.dataDecision = dataDecision;
+    data.studentId = req.query.studentId;
+
     Student.find({_id: req.query.studentId}).then(student => {
       student[0].tierTwo.forEach(worksheet => {
         if (worksheet._id.toString() === req.query.worksheet) {
@@ -69,7 +71,7 @@ let saveWorksheet = (req, res) => {
     Tier_2_minssessions: req.body.Tier_2_minssessions,
     Tier_2_SessionsWeek: req.body.Tier_2_SessionsWeek,
     Frequency_PMing: req.body.Frequency_PMing,
-    PMing_Tool: req.body.PMingTool
+    PMing_Tool: req.body.PMing_Tool
   };
   //extracts the student code from the student name string
   let code = req.body.student.split(" ")[2].slice(1, -1);
@@ -104,7 +106,25 @@ let saveWorksheet = (req, res) => {
     });
 };
 
-let closeWorksheet = (req, res) => {};
+let closeWorksheet = (req, res) => {
+  console.log(req.user);
+  console.log(req.body);
+  Student.findById(req.body.studentId)
+    .then(student => {
+      let worksheet = student.tierTwo.id(req.body.worksheetId);
+      console.log(worksheet);
+      worksheet.Tier_2_Date_Completed = Date.now();
+      worksheet.interventionResult = req.body.interventionResult;
+      worksheet.dataDecision = req.body.dataDecision;
+      return student.save();
+    })
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch(e => {
+      console.error(e);
+    });
+};
 
 router.get("/new", onFormCreate);
 router.get("/close", onFormClose);

@@ -21,17 +21,19 @@
     <p>{{worksheet.Tier_2_minssessions}}</p>
     <h3>Sessions Per Week</h3>
     <p>{{worksheet.Tier_2_SessionsWeek}}</p>
-    <h3></h3>
-
+    <h3>Progress Monitoring Tools</h3>
+    <p>{{worksheet.PMing_Tool}}</p>
   </div>
   <div class="form-group">
     <div class="col-md-6">
-      <form action="/form/submitWorksheet" method="POST">
+      <form action="/form/closeWorksheet" method="POST">
+        <input type="hidden" name="studentId" value="{{studentId}}">
+        <input type="hidden" name="worksheetId" value="{{worksheet._id}}">
       <div class="col-sm-3">
         <label>Intervention Result </label>
           {{#each interventionResult as |result|}}
             <div class="radio">
-              <input type="radio" name="dataDecision[{{result.id}}]" id="{{result.id}}" value="{{result.id}}">
+              <input type="radio" name="interventionResult" id="{{result.id}}" value="{{result.id}}">
               {{result.label}}
               </input>
             </div>
