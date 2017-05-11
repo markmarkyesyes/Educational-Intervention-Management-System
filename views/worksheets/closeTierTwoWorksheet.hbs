@@ -1,0 +1,81 @@
+
+<div class="row">
+  <h1 class="text-center">Tier Two Worksheet</h1>
+  <h2 class="text-center">Subject: {{subject}}</h2>
+  <h2 class="text-center">For: {{student}}</h2>
+  <hr />
+  <div class="col-md-10">
+    <h3> Problem ID</h3>
+    <p> {{worksheet.Problem_ID}}</p>
+    <h3>Problem Analysis</h3>
+    <p>{{worksheet.Problem_Analysis}}</p>
+    <h3>Goal</h3>
+    <p>{{worksheet.Goal}}</p>
+    <h3>Description of Tier 2 Intervention</h3>
+    <p>{{worksheet.Description_of_Interv_Tier_2}}</p>
+    <h3>Date Started</h3>
+    <p>{{worksheet.Tier_2_Date_Started}}</p>
+    <h3>Date Ended</h3>
+    <p>{{worksheet.Tier_2_Date_Ended}}</p>
+    <h3>Minutes Per Session</h3>
+    <p>{{worksheet.Tier_2_minssessions}}</p>
+    <h3>Sessions Per Week</h3>
+    <p>{{worksheet.Tier_2_SessionsWeek}}</p>
+    <h3>Progress Monitoring Tools</h3>
+    <p>{{worksheet.PMing_Tool}}</p>
+  </div>
+  <div class="form-group">
+    <div class="col-md-6">
+      <form action="/form/closeWorksheet" method="POST">
+        <input type="hidden" name="studentId" value="{{studentId}}">
+        <input type="hidden" name="worksheetId" value="{{worksheet._id}}">
+      <div class="col-sm-3">
+        <label>Intervention Result </label>
+          {{#each interventionResult as |result|}}
+            <div class="radio">
+              <input type="radio" name="interventionResult" id="{{result.id}}" value="{{result.id}}">
+              {{result.label}}
+              </input>
+            </div>
+          {{/each}}
+      </div>
+      <div class="col-sm-3">
+        <label for="dataDecision">Decision for Intervention</label><br />
+        {{#each dataDecision as |decision| }}
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="dataDecision[{{decision.id}}]" >{{decision.label}}</input>
+            </label>
+          </div>
+        {{/each}}
+      </div>
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+Tier_2_Interventionist: [ 59148760b2c25610ffa0397b ],
+     _id: 59148761b2c25610ffa039ac,
+     interventionEffectiveness:
+      { effectivenessOfIntervention: 0,
+        numStudsDecreasedDisc: 2,
+        numStudsinInt: 5 },
+     dataDecision: { Fade_Intervention: 'on' },
+     interventionResult: { No_Change: 'on' },
+     notes: null,
+     Tier_2_minssessions: '15-20',
+     Tier_2_SessionsWeek: '3-5',
+     Tier_2_Date_Completed: 2017-05-11T15:46:41.140Z,
+     Tier_2_Date_Ended: 2017-05-11T15:46:41.140Z,
+     Tier_2_Date_Started: 2017-05-11T15:46:41.140Z,
+     Description_of_Interv_Tier_2:
+      { descSixMinSol: 'on',
+        descIncWordRehrsl: 'on',
+        descSightWordsDrast: 'on' },
+     Goal: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
+     Subject: 'Reading',
+     Problem_Analysis: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
+     Problem_ID: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
+     id: 'SyQYvwbGeb' } }

@@ -1,9 +1,9 @@
 <h1>Welcome, {{user.fname}} {{user.lname}}</h1>
 <hr />
-<form class="form-inline" action="/form/new" method="POST">
+<form class="form-inline" action="/form/new" method="get">
   <div class="row">
     <div class="col-sm-12">
-      <h4 class="inline-headers">File an Intervention Report:</h4>
+      <h4 class="inline-headers">Create an Intervention Report:</h4>
       <input type="hidden" name="_id" value="{{user._id}}">
       <div class="form-group">
         <label for="studentName">Student</label>
@@ -23,9 +23,8 @@
         </select>
       </div>
       <datalist id="studentnames">
-        <option value="test">
         {{#each dashboard.studentNames as |student|}}
-          <option value="{{student}}">
+          <option value="{{student.name}} [{{student.code}}]"></option>
         {{/each}}
       </datalist>
       <button type="submit" class="btn btn-default">Create Report</button>
@@ -42,15 +41,23 @@
       </tr>
     </thead>
     <tbody>
-    {{#each dashboard.pmStudents as |pmStudent|}}
-      {{#if pmStudent.tierTwo}}
+    {{#each dashboard.students as |student|}}
+      {{#if student.tierTwo}}
       <tr>
-        <td>{{pmStudent.fname}}</td>
-        <td>{{pmStudent.lname}}</td>
+        <td>{{student.fname}}</td>
+        <td>{{student.lname}}</td>
         <!-- There can only be one report of each subject at each level -->
-        {{#each pmStudent.tierTwo as |t2Report|}}
-        <td><a href="/show/{{t2Report._id}}">Tier Two Report: {{t2Report.subject}}</td>
-        {{/each}}
+        <td>
+          <form class="form-inline" action="/form/close" method="get">
+            <input type="hidden" name="studentId" value="{{student._id}}"/>
+            <select class="form-control" name="worksheet">
+              {{#each student.tierTwo as |t2Report|}}
+                <option value="{{t2Report._id}}">Tier Two Report: {{t2Report.Subject}}</option>
+              {{/each}}
+            </select>
+            <button type="submit" class="btn btn-default">Close Report</button>
+          </form>
+        </td>
       </tr>
       {{/if}}
     {{/each}}

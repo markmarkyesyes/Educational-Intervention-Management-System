@@ -10,14 +10,7 @@ let FacultySchema = new Schema({
   passwordHash: {type: String},
   gradesTaught: [{type: Number}],
   notes: [{type: String}],
-  pmStudents: [
-    {
-      type: Schema.ObjectId,
-      ref: "Student",
-      allowNull: true
-    }
-  ],
-  intStudents: [
+  students: [
     {
       type: Schema.ObjectId,
       ref: "Student",

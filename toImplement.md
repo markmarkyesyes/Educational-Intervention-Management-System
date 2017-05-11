@@ -28,6 +28,10 @@ Create Dashboard
   -when a student is present on a teachers dashboard,
     -allow them to view dropdowns of the students paperwork sorted by tier
     -further divided between reading, math, and behavior
+  -implement a complete worksheet flow
+    -select student(from proper faculty list)
+    -load existing data as text and serve final boxes,
+
   //-implement a new worksheet flow at the top of the page
     //-one row,
       //1. autofill student names from db
@@ -42,26 +46,34 @@ Create Dashboard
         //-will serve the proper form with the conditional objects determined by subject
 
 
-Create Tier Two Worksheet
-  -Make sure all inputs for the district template are included
+New Tier Two Worksheet
+  //-Make sure all inputs for the district template are included
     //-conditionally populate tier intervention radio options
     //-serve student data into hidden fields
-    //-serve previous problem id as the devault value for the textarea
-    //-serve previous intervention descriptions as hidden input fields and display lists
+    -serve previous problem id as the devault value for the textarea
+    -serve previous intervention descriptions as hidden input fields and display lists
     //-label pm tools
     //-import teacher names as datalist (via helper)
-    -make sure progress details(group one) will have select buttons where only one can be selected at a time
-    -second group of progress details can select multiple
-    -break each section into partials
+    //-second group of progress details can select multiple
+    //-break each section into partials
   -Review validations
-  -Make sure the data is persisted to a Document in the students appropriate list using form submission data
-  -break intervention effectiveness section into a logic module that returns directly to form persistence
+    -add note as to mins/session validation
+  -make sure it is pushed to all associated teachers associated students field
+  -make sure it is separately added to the interventionists students field
   //-Return user to dashboard after creation
       -with success flash messages
+
+Close Tier Two Worksheet
+  -break intervention effectiveness section into a logic module that returns directly to form persistence
+  -make sure progress details(group one) will have select buttons where only one can be selected at a time
+  -persist completed date server side
+  -confirm data before persisting
+
 
 -persist to database correctly
 -persist reference to the student to interventionist and hr teacher on creation
 
+Split form entry into starting and closing pages
 
 -changing db keys
   //-first models,
