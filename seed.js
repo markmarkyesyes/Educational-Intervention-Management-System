@@ -40,9 +40,10 @@ Faculty.remove({}, function(err) {
     })
       .then(res => {
         console.log("created 50 faculty members");
-        return Faculty.find({}, {_id: 1});
+        return Faculty.find({}, {_id: 1, email: 1});
       })
       .then(faculty => {
+        console.log("hr teacher email", faculty[2].email);
         console.log("beginning students seed");
         for (let i = 0; i < 600; i++) {
           let facultyIndex = Math.floor(Math.random() * (50 - 1)) + 1;

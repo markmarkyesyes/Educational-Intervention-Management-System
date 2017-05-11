@@ -38,6 +38,8 @@ let onFormCreate = (req, res) => {
   });
 };
 
+let onFormClose = (req, res) => {};
+
 let saveWorksheet = (req, res) => {
   let newWorksheet = {
     Subject: req.body.Subject,
@@ -62,7 +64,7 @@ let saveWorksheet = (req, res) => {
       return Faculty.update(
         {
           _id: {
-            $in: [req.body._id, student.hrTeacher]
+            $in: [student[0].hrTeacher, req.user._id]
           }
         },
         {
@@ -75,7 +77,11 @@ let saveWorksheet = (req, res) => {
     });
 };
 
+let closeWorksheet = (req, res) => {};
+
 router.get("/new", onFormCreate);
+router.get("/close", onFormClose);
 router.post("/saveWorksheet", saveWorksheet);
+router.post("/closeWorksheet", closeWorksheet);
 
 module.exports = router;
