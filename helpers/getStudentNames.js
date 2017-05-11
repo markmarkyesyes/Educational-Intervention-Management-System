@@ -4,9 +4,12 @@ const Student = models.Student;
 const Faculty = models.Faculty;
 
 let getStudentNames = function() {
-  return Student.find({}, {_id: 0, fname: 1, lname: 1}).then(sNames => {
+  return Student.find(
+    {},
+    {_id: 0, fname: 1, lname: 1, code: 1}
+  ).then(sNames => {
     return (sNames = sNames.map(nameObj => {
-      return `${nameObj.fname} ${nameObj.lname}`;
+      return {name: `${nameObj.fname} ${nameObj.lname}`, code: nameObj.code};
     }));
   });
 };

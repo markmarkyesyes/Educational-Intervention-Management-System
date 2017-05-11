@@ -4,23 +4,20 @@ const Faculty = models.Faculty;
 const {getStudentNames} = require("../../helpers/getStudentNames");
 
 let getStudentsForFaculty = id => {
-  return Faculty.find(id)
-    .populate("pmStudents")
-    .populate("intStudents")
-    .then(pmStudents => {
-      return pmStudents;
-    });
+  return Faculty.find(id).populate("students").then(students => {
+    return students;
+  });
 };
 
 let populateDashboard = id => {
   let dashboard = {};
   return getStudentsForFaculty(id)
     .then(students => {
-      dashboard.intStudents = students[0].intStudents;
-      dashboard.pmStudents = students[0].pmStudents;
+      dashboard.students = students[0].students;
       return getStudentNames();
     })
     .then(names => {
+      console.log(names);
       dashboard.studentNames = names;
       return dashboard;
     });

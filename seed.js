@@ -27,8 +27,7 @@ Faculty.remove({}, function(err) {
             password: "Foo",
             gradesTaught: [1, 2, 3],
             notes: ["Foo", "Bar"],
-            pmStudents: [],
-            intStudents: []
+            students: []
           });
           faculty.push(member);
         }
@@ -40,7 +39,7 @@ Faculty.remove({}, function(err) {
       }
     })
       .then(res => {
-        console.log("created 50 faculty members", res);
+        console.log("created 50 faculty members");
         return Faculty.find({}, {_id: 1});
       })
       .then(faculty => {
@@ -50,7 +49,8 @@ Faculty.remove({}, function(err) {
           var student = Student({
             fname: faker.fake("{{name.firstName}}"),
             lname: faker.fake("{{name.lastName}}"),
-            hrTeacher: faculty[facultyIndex - 1]._id,
+            code: i + 1,
+            hrTeacher: faculty[2]._id,
             grade: 5,
             school: "Franklin",
             tierTwo: [
@@ -87,7 +87,6 @@ Faculty.remove({}, function(err) {
         }
         var studentPromises = [];
         students.forEach(model => {
-          console.log("saving student");
           studentPromises.push(model.save());
         });
         return Promise.all(studentPromises);

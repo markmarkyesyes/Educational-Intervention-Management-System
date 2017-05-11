@@ -1,11 +1,11 @@
 <div class="row">
   <h1 class="text-center">Tier Two Worksheet</h1>
-  <h2 class="text-center">Subject: {{subject}}</h2>
+  <h2 class="text-center">Subject: {{Subject}}</h2>
   <h2 class="text-center">For: {{student}}</h2>
   <hr />
   <div class="form-group">
     <div class="col-md-6">
-      <form action="/form/submitWorksheet" method="POST">
+      <form action="/form/saveWorksheet" method="POST">
         <!-- hidden inputs -->
         <input type="hidden" name="Subject" value="{{Subject}}">
         <!-- should only post the _id mentioned in  -->

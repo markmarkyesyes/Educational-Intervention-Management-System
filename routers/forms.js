@@ -39,7 +39,6 @@ let onFormCreate = (req, res) => {
 };
 
 let saveWorksheet = (req, res) => {
-  console.log(req.body);
   let newWorksheet = {
     Subject: req.body.Subject,
     problem_ID: req.body.Problem_ID,
@@ -48,29 +47,26 @@ let saveWorksheet = (req, res) => {
     Description_of_Interv_Tier_2: req.body.Description_of_Interv_Tier_2,
     Tier_2_Date_Started: req.body.Tier_2_Date_Started,
     Tier_2_Date_Ended: req.body.Tier_2_Date_Ended,
-    Tier_2_Date_Completed: req.body.Tier_2_Date_Completed,
     Tier_2_minssessions: req.body.Tier_2_minssessions,
     Tier_2_SessionsWeek: req.body.Tier_2_SessionsWeek,
-    Frequency_PMing: req.body.pmFrequency,
-    PMing_Tool: req.body.pmIngTool
+    Frequency_PMing: req.body.Frequency_PMing,
+    PMing_Tool: req.body.PMingTool
   };
-  let name = req.body.student.split(" ");
-
-  Student.update(
-    {fname: name[0], lname: name[1]},
-    {
-      $push: {tierTwo: newWorksheet}
-    }
-  )
+  //extracts the student code from the student name string
+  let code = req.body.student.split(" ")[2].slice(1, -1);
+  Student.update({code}, {$push: {tierTwo: newWorksheet}})
     .then(() => {
-      return Student.find({fname: name[0], lname: name[1]}, {_id: 1});
+      return Student.find({code}, {_id: 1, hrTeacher: 1});
     })
     .then(student => {
-      console.log("got student id for pushing to faculty Array", student);
       return Faculty.update(
-        {_id: req.body._id},
         {
-          $push: {pmStudents: student[0]._id}
+          _id: {
+            $in: [req.body._id, student.hrTeacher]
+          }
+        },
+        {
+          $push: {students: student[0]._id}
         }
       );
     })
@@ -80,6 +76,6 @@ let saveWorksheet = (req, res) => {
 };
 
 router.get("/new", onFormCreate);
-router.post("/startWorksheet", saveWorksheet);
+router.post("/saveWorksheet", saveWorksheet);
 
 module.exports = router;
