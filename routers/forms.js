@@ -78,7 +78,8 @@ let saveWorksheet = (req, res) => {
         },
         {
           $push: {students: student[0]._id}
-        }
+        },
+        {multi: true}
       );
     })
     .then(() => {
