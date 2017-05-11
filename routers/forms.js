@@ -39,15 +39,16 @@ let onFormCreate = (req, res) => {
 };
 
 let onFormClose = (req, res) => {
-  console.log(req.query);
   if (req.user) {
-    console.log("in get router");
-    let currWorksheet;
+    let data = {};
+    data.interventionResult = interventionResult;
+    data.dataDecision = dataDecision;
     Student.find({_id: req.query.studentId}).then(student => {
       student[0].tierTwo.forEach(worksheet => {
-        console.log(worksheet);
         if (worksheet._id.toString() === req.query.worksheet) {
-          res.render("worksheets/closeTierTwoWorksheet", {worksheet});
+          data.worksheet = worksheet;
+          console.log(data);
+          res.render("worksheets/closeTierTwoWorksheet", data);
         }
       });
     });
@@ -59,7 +60,7 @@ let onFormClose = (req, res) => {
 let saveWorksheet = (req, res) => {
   let newWorksheet = {
     Subject: req.body.Subject,
-    problem_ID: req.body.Problem_ID,
+    Problem_ID: req.body.Problem_ID,
     Problem_Analysis: req.body.Problem_Analysis,
     Goal: req.body.Goal,
     Description_of_Interv_Tier_2: req.body.Description_of_Interv_Tier_2,
