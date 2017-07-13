@@ -1,23 +1,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // const argon2 = require("argon2");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt-nodejs");
 
 let FacultySchema = new Schema({
-  fname: {type: String},
-  lname: {type: String},
-  email: {type: String, isEmail: true},
-  passwordHash: {type: String},
-  gradesTaught: [{type: Number}],
-  notes: [{type: String}],
-  pmStudents: [
-    {
-      type: Schema.ObjectId,
-      ref: "Student",
-      allowNull: true
-    }
-  ],
-  intStudents: [
+  fname: { type: String },
+  lname: { type: String },
+  email: { type: String, isEmail: true },
+  passwordHash: { type: String },
+  gradesTaught: [{ type: Number }],
+  notes: [{ type: String }],
+  students: [
     {
       type: Schema.ObjectId,
       ref: "Student",
@@ -31,7 +24,7 @@ FacultySchema.methods.validatePassword = function(password) {
 };
 
 FacultySchema.virtual("password").set(function(value) {
-  this.passwordHash = bcrypt.hashSync(value, 8);
+  this.passwordHash = bcrypt.hashSync(value, bcrypt.genSaltSync());
 });
 
 // FacultySchema.methods.validPassword = function(password) {

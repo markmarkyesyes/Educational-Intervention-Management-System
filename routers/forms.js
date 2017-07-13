@@ -13,72 +13,92 @@ const {
   interventionEffectiveness
 } = require("../helpers/resultOptions");
 
-let loadTemplate = (req, res) => {
+let onFormCreate = (req, res) => {
   let data = {};
-  console.log(req.body);
   getFacultyInfo().then(faculty => {
-    console.log(faculty);
-    data.interventionResult = interventionResult;
-    data.dataDecision = dataDecision;
-    data.interventionEffectiveness = dataDecision;
     data.facultyNames = faculty;
-    data.student = req.body.studentName;
-    data.subject = req.body.subject;
-    data.tier = req.body.tier;
-    data.currUser = req.body._id;
-    data.interventionStrategies = strategies[data.subject];
-    data.progressTools = progressTools[data.subject];
-    switch (data.tier) {
+    data.student = req.query.studentName;
+    data.Subject = req.query.Subject;
+    data.currUser = req.user._id;
+    data.interventionStrategies = strategies[data.Subject];
+    data.progressTools = progressTools[data.Subject];
+    switch (req.query.tier) {
       case "One":
         res.render("worksheets/tierOneWorksheet", data);
         break;
       case "Two":
-        res.render("worksheets/tierTwoWorksheet", data);
+        res.render("worksheets/newTierTwoWorksheet", data);
         break;
       case "Three":
         res.render("worksheets/tierThreeWorksheet", data);
-        breakt;
+        break;
       default:
         res.redirect("/");
     }
   });
 };
 
+let onFormClose = (req, res) => {
+  if (req.user) {
+    let data = {};
+    data.interventionResult = interventionResult;
+    data.dataDecision = dataDecision;
+    data.studentId = req.query.studentId;
+
+    Student.find({_id: req.query.studentId}).then(student => {
+      student[0].tierTwo.forEach(worksheet => {
+        if (worksheet._id.toString() === req.query.worksheet) {
+          data.worksheet = worksheet;
+          console.log(data);
+          res.render("worksheets/closeTierTwoWorksheet", data);
+        }
+      });
+    });
+  } else {
+    res.redirect("/login");
+  }
+};
+
 let saveWorksheet = (req, res) => {
-  console.log(req.body);
   let newWorksheet = {
-    subject: req.body.subject,
-    problemID: req.body.problemId,
-    problemAnalysis: req.body.problemAnalysis,
-    goal: req.body.goal,
-    descriptionTierTwo: req.body.intStrats,
-    startDate: req.body.startDate,
-    endDate: req.body.endDate,
-    completedDate: req.body.completedDate,
-    minutesPerSession: req.body.minutesPerSession,
-    sessionsPerWeek: req.body.sessionsPerWeek,
-    interventionistName: req.body.interventionistName,
-    pmFacultyName: req.body.pmFacultyName,
-    pmFrequency: req.body.pmFrequency,
-    pmTools: req.body.pmIngTool
+    Subject: req.body.Subject,
+    Problem_ID: req.body.Problem_ID,
+    Problem_Analysis: req.body.Problem_Analysis,
+    Goal: req.body.Goal,
+    Description_of_Interv_Tier_2: req.body.Description_of_Interv_Tier_2,
+    Tier_2_Date_Started: req.body.Tier_2_Date_Started,
+    Tier_2_Date_Ended: req.body.Tier_2_Date_Ended,
+    Tier_2_minssessions: req.body.Tier_2_minssessions,
+    Tier_2_SessionsWeek: req.body.Tier_2_SessionsWeek,
+    Frequency_PMing: req.body.Frequency_PMing,
+    PMing_Tool: req.body.PMing_Tool
   };
-  let name = req.body.student.split(" ");
-  Student.update(
-    {fname: name[0], lname: name[1]},
-    {
-      $push: {tierTwo: newWorksheet}
-    }
-  )
+  //extracts the student code from the student name string
+  let code = req.body.student.split(" ")[2].slice(1, -1);
+  Student.update({code}, {$push: {tierTwo: newWorksheet}})
     .then(() => {
-      return Student.find({fname: name[0], lname: name[1]}, {_id: 1});
+      return Student.find({code}, {_id: 1, hrTeacher: 1});
     })
     .then(student => {
-      console.log("got student id for pushing to faculty Array", student);
       return Faculty.update(
-        {_id: req.body._id},
         {
-          $push: {pmStudents: student[0]._id}
-        }
+          $and: [
+            {
+              _id: {
+                $in: [student[0].hrTeacher, req.user._id]
+              }
+            },
+            {
+              students: {
+                $nin: [student[0]._id]
+              }
+            }
+          ]
+        },
+        {
+          $push: {students: student[0]._id}
+        },
+        {multi: true}
       );
     })
     .then(() => {
@@ -86,7 +106,29 @@ let saveWorksheet = (req, res) => {
     });
 };
 
-router.post("/new", loadTemplate);
-router.post("/submitWorksheet", saveWorksheet);
+let closeWorksheet = (req, res) => {
+  console.log(req.user);
+  console.log(req.body);
+  Student.findById(req.body.studentId)
+    .then(student => {
+      let worksheet = student.tierTwo.id(req.body.worksheetId);
+      console.log(worksheet);
+      worksheet.Tier_2_Date_Completed = Date.now();
+      worksheet.interventionResult = req.body.interventionResult;
+      worksheet.dataDecision = req.body.dataDecision;
+      return student.save();
+    })
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch(e => {
+      console.error(e);
+    });
+};
+
+router.get("/new", onFormCreate);
+router.get("/close", onFormClose);
+router.post("/saveWorksheet", saveWorksheet);
+router.post("/closeWorksheet", closeWorksheet);
 
 module.exports = router;

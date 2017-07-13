@@ -3,6 +3,7 @@ const models = require("./models");
 const Faculty = models.Faculty;
 const Student = models.Student;
 const faker = require("faker");
+const shortid = require("shortid");
 mongoose.connect("mongodb://localhost/psd150-interventions-development");
 
 var faculty = [];
@@ -27,8 +28,7 @@ Faculty.remove({}, function(err) {
             password: "Foo",
             gradesTaught: [1, 2, 3],
             notes: ["Foo", "Bar"],
-            pmStudents: [],
-            intStudents: []
+            students: []
           });
           faculty.push(member);
         }
@@ -40,62 +40,49 @@ Faculty.remove({}, function(err) {
       }
     })
       .then(res => {
-        console.log("created 50 faculty members", res);
-        return Faculty.find({}, {_id: 1});
+        console.log("created 50 faculty members");
+        return Faculty.find({}, {_id: 1, email: 1});
       })
       .then(faculty => {
+        console.log("hr teacher email", faculty[2].email);
         console.log("beginning students seed");
         for (let i = 0; i < 600; i++) {
           let facultyIndex = Math.floor(Math.random() * (50 - 1)) + 1;
           var student = Student({
             fname: faker.fake("{{name.firstName}}"),
             lname: faker.fake("{{name.lastName}}"),
-            hrTeacher: faculty[facultyIndex - 1]._id,
+            code: i + 1,
+            hrTeacher: faculty[2]._id,
             grade: 5,
             school: "Franklin",
             tierTwo: [
               {
-                problemID: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
-                problemAnalysis: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
-                subject: "Reading",
-                goal: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
-                descriptionTierOne: {
+                id: shortid.generate(),
+                Problem_ID: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
+                Problem_Analysis: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
+                Subject: "Reading",
+                Goal: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt",
+                Description_of_Interv_Tier_2: {
                   descSightWordsDrast: "on",
                   descIncWordRehrsl: "on",
                   descSixMinSol: "on"
                 },
-                descriptionTierTwo: {
-                  descSightWordsDrast: "on",
-                  descIncWordRehrsl: "on",
-                  descSixMinSol: "on"
-                },
-                startDate: Date.now(),
-                endDate: Date.now(),
-                completedDate: Date.now(),
-                sessionsPerWeek: "3-5",
-                minutesPerSession: "15-20",
-                interventionistName: [
-                  `${faculty[facultyIndex - 1].fname} ${faculty[facultyIndex - 1].lname}`
-                ],
+                Tier_2_Date_Started: Date.now(),
+                Tier_2_Date_Ended: Date.now(),
+                Tier_2_Date_Completed: Date.now(),
+                Tier_2_SessionsWeek: "3-5",
+                Tier_2_minssessions: "15-20",
+                Tier_2_Interventionist: [faculty[facultyIndex - 1]._id],
                 pmTools: {progEarlyRdng: "on", progSightWords: "on"},
                 pmFrequency: "3-5",
-                pmFacultyName: [
-                  `${faculty[facultyIndex - 1].fname} ${faculty[facultyIndex - 1].lname}`
-                ],
                 notes: null,
-                regression: true,
-                noChange: true,
-                decreaseDiscrepancy: false,
-                discontinueIntervention: true,
-                fadeIntervention: true,
-                modifyIntervention: true,
-                continueIntervention: true,
-                intensityIntervention: true,
-                recycleThroughPSProcess: true,
-                seekEntitlement: true,
-                numStudsinInt: 5,
-                numStudsDecreasedDisc: 2,
-                effectivenessOfIntervention: 0
+                interventionResult: {No_Change: "on"},
+                dataDecision: {Fade_Intervention: "on"},
+                interventionEffectiveness: {
+                  numStudsinInt: 5,
+                  numStudsDecreasedDisc: 2,
+                  effectivenessOfIntervention: 0
+                }
               }
             ]
           });
@@ -103,7 +90,6 @@ Faculty.remove({}, function(err) {
         }
         var studentPromises = [];
         students.forEach(model => {
-          console.log("saving student");
           studentPromises.push(model.save());
         });
         return Promise.all(studentPromises);

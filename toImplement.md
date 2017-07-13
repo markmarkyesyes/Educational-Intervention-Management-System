@@ -25,6 +25,13 @@ Create Dashboard
   //-list students in database (name, grade, hrteacher, forms )
     //-only list students with forms
   -allow teacher to view or print any worksheet from the student
+  -when a student is present on a teachers dashboard,
+    -allow them to view dropdowns of the students paperwork sorted by tier
+    -further divided between reading, math, and behavior
+  -implement a complete worksheet flow
+    -select student(from proper faculty list)
+    -load existing data as text and serve final boxes,
+
   //-implement a new worksheet flow at the top of the page
     //-one row,
       //1. autofill student names from db
@@ -39,40 +46,63 @@ Create Dashboard
         //-will serve the proper form with the conditional objects determined by subject
 
 
-Create Tier Two Worksheet
-  -Make sure all inputs for the district template are included
+New Tier Two Worksheet
+  //-Make sure all inputs for the district template are included
     //-conditionally populate tier intervention radio options
     //-serve student data into hidden fields
-    //-serve previous problem id as the devault value for the textarea
-    //-serve previous intervention descriptions as hidden input fields and display lists
+    -serve previous problem id as the devault value for the textarea
+    -serve previous intervention descriptions as hidden input fields and display lists
     //-label pm tools
     //-import teacher names as datalist (via helper)
-    -make sure progress details(group one) will have select buttons where only one can be selected at a time
-    -second group of progress details can select multiple
+    //-second group of progress details can select multiple
+    //-break each section into partials
   -Review validations
-  //-Make sure the data is persisted to a Document in the students appropriate list using form submission data
+    -add note as to mins/session validation
+  -make sure it is pushed to all associated teachers associated students field
+  -make sure it is separately added to the interventionists students field
   //-Return user to dashboard after creation
       -with success flash messages
 
-//-persist to database correctly
-    and render a json confirmation page
+Close Tier Two Worksheet
+  -break intervention effectiveness section into a logic module that returns directly to form persistence
+  -make sure progress details(group one) will have select buttons where only one can be selected at a time
+  -persist completed date server side
+  -confirm data before persisting
 
--create a show page to display the data linked from student on the dashboard
+
+-persist to database correctly
+-persist reference to the student to interventionist and hr teacher on creation
+
+Split form entry into starting and closing pages
+
+-changing db keys
+  //-first models,
+  //-second seeds,
+  -third in home page,
+  //-fourth in forms serving page
+   -including helper methods
+  //-fifth in form page
+    -break out into partials
+  -sixth in form persistence(implement new form persistence system)
+-add student codes
+
+consider what we are doing to serve student names into the dropdown on the dashboard, and resplitting it when we get to form submission. (seems convoluted)
+  -pass objects with fullname and student document id
+    -in worksheet, return id as hidden field, dont return name
+  -do the same when passing faculty
 
 
-
+-find way to populate worksheets when needed rather than on dashboard load (since loading will slow quickly with volume)
 --COMPLETED EXPECTED IMPLEMENTATION--
 Refactor: getStudentNames method - rename to getNames
           initial state for form creation
           combine id/populator helpers
           reformat id's to match db
-          Make inputs identical to model so we can persist the response object without modification
+          (once validations are in place)Make inputs identical to model so we can persist the response object without modification
 
 Add DocX Templater
   -add to student display on Dashboard
   -clicking creates the file and sends it to the browser print page
-
-Add a translating layer for database values
 
 Login features
   -not a user? send email to admin to notify
