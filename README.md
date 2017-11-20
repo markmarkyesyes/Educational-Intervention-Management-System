@@ -1,5 +1,5 @@
 # [Education Intervention Management System](https://github.com/markmarkyesyes/psd150-intervention-system)
-### Full release fall 2017
+### Current TDD MERN stack rewrite in progress
 
 
 ## About
